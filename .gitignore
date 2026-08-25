@@ -1,0 +1,22 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# uploaded files (regenerated at runtime)
+server/uploads/
+
+# embedded dev MongoDB data
+server/.mongo-db*/
+server/.mongo-data/
+.cache/

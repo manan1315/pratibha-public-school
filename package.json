@@ -1,0 +1,14 @@
+{
+  "name": "pratibha-public-school-basna",
+  "version": "1.0.0",
+  "description": "Official website of Pratibha Public School Basna — full-stack React + Node.js + MongoDB application",
+  "scripts": {
+    "start": "cd server && npm start",
+    "build": "cd server && npm install && npm run build",
+    "seed": "cd server && npm run seed",
+    "dev": "cd server && npm run dev"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
