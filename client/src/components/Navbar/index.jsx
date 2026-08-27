@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiTwitter, FiYoutube } from 'react-icons/fi';
 import { useTheme } from '../../context/ThemeContext';
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(null);
+  const closeTimer = useRef(null);
   const location = useLocation();
   const { darkMode, toggleTheme } = useTheme();
 
@@ -117,8 +118,16 @@ const Navbar = () => {
                 <div
                   key={item.name}
                   className="relative"
-                  onMouseEnter={() => item.dropdown && setDropdownOpen(item.name)}
-                  onMouseLeave={() => setDropdownOpen(null)}
+                  onMouseEnter={() => {
+                    // cancel any in-progress close, then open
+                    if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
+                    if (item.dropdown) setDropdownOpen(item.name);
+                  }}
+                  onMouseLeave={() => {
+                    // delay close so cursor can travel the small gap into the menu
+                    if (closeTimer.current) clearTimeout(closeTimer.current);
+                    closeTimer.current = setTimeout(() => setDropdownOpen(null), 150);
+                  }}
                 >
                   <Link
                     to={item.path}
@@ -136,7 +145,17 @@ const Navbar = () => {
                   
                   {/* Dropdown */}
                   {item.dropdown && dropdownOpen === item.name && (
-                    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl py-2 z-50 border border-gray-100">
+                    <div
+                      className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl py-2 z-50 border border-gray-100"
+                      onMouseEnter={() => {
+                        // cursor reached the menu — cancel any pending close
+                        if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
+                      }}
+                      onMouseLeave={() => {
+                        if (closeTimer.current) clearTimeout(closeTimer.current);
+                        closeTimer.current = setTimeout(() => setDropdownOpen(null), 150);
+                      }}
+                    >
                       {item.dropdown.map((subItem) => (
                         <Link
                           key={subItem.name}
