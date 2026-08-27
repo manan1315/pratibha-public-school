@@ -184,3 +184,21 @@
     font-size: 14px !important;
   }
 }
+
+/* Dark mode */
+.dark body { background: #0f172a; color: #e2e8f0; }
+.dark nav { background: #1e293b !important; }
+.dark .card { background: #1e293b; }
+.dark .section-title { color: #e2e8f0; }
+.dark .nav-link { color: #cbd5e1; }
+.dark p, .dark span, .dark li { color: #cbd5e1; }
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 { color: #e2e8f0; }
+.dark .bg-white { background: #1e293b; }
+.dark .bg-gray-50 { background: #0f172a; }
+.dark .bg-gray-100 { background: #1e293b; }
+.dark .text-gray-600 { color: #94a3b8; }
+.dark .text-gray-700 { color: #cbd5e1; }
+.dark .border-gray-100 { border-color: #334155; }
+.dark .border-gray-300 { border-color: #475569; }
+.dark .shadow-lg, .dark .shadow-2xl, .dark .shadow-xl { box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
+.dark .input-field { background: #1e293b; color: #e2e8f0; border-color: #475569; }
