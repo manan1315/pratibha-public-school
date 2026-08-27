@@ -68,6 +68,7 @@ const Home = () => {
 
   return (
     <div>
+      {/* Hero sits behind the sticky transparent navbar */}
       <HeroSlider fullscreen />
       <StatsCounter />
 

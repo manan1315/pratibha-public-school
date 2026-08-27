@@ -44,7 +44,7 @@ const HeroSlider = ({ fullscreen = false }) => {
   }
 
   return (
-    <div className={`relative ${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'}`}>
+    <div className={`relative ${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} ${fullscreen ? '-mt-[80px]' : ''}`}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation
