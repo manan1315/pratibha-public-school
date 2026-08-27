@@ -25,16 +25,16 @@ const Facilities = () => {
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-20">
+      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mb-4">Facilities</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Facilities</h1>
           <p className="text-gray-300">Home / Facilities</p>
         </div>
       </div>
 
-      <section className="py-16 md:py-24">
+      <section className="py-7 md:py-7">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-5">
             <h2 className="section-title">World-Class Infrastructure</h2>
             <p className="section-subtitle">
               Facilities designed to support holistic development and create an optimal learning environment
@@ -42,9 +42,9 @@ const Facilities = () => {
           </div>
 
           {loading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-white rounded-2xl shadow-lg p-6 animate-pulse">
+                <div key={i} className="bg-white rounded-2xl shadow-lg p-4 animate-pulse">
                   <div className="w-14 h-14 rounded-xl bg-gray-200 mb-4" />
                   <div className="h-5 bg-gray-200 rounded w-2/3 mb-3" />
                   <div className="h-3 bg-gray-100 rounded w-full mb-2" />
@@ -53,11 +53,11 @@ const Facilities = () => {
               ))}
             </div>
           ) : facilities.length === 0 ? (
-            <div className="text-center text-gray-500 py-12">
+            <div className="text-center text-gray-500 py-6">
               Facility information will be published shortly.
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {facilities.map((f) => (
                 <div key={f._id} className="card">
                   {f.images?.[0] && (
@@ -68,7 +68,7 @@ const Facilities = () => {
                       className="w-full h-44 object-cover rounded-xl mb-4"
                     />
                   )}
-                  <div className="w-14 h-14 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-2xl mb-4">
+                  <div className="w-14 h-14 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl mb-4">
                     {ICONS[f.icon] || <FiHome />}
                   </div>
                   <h3 className="text-xl font-bold text-[#1a237e] mb-2">{f.title}</h3>

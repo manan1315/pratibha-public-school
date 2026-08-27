@@ -88,7 +88,7 @@ const ChatBot = () => {
       {isOpen && (
         <div className="fixed bottom-24 left-4 sm:left-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="bg-[#1a237e] text-white px-4 py-3 flex items-center gap-3">
+          <div className="bg-[#1a237e] text-white px-4 py-3 flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-[#f9a825] text-[#1a237e] flex items-center justify-center font-bold text-sm shrink-0">
               PPS
             </div>

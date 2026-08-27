@@ -19,19 +19,19 @@ const StatsCounter = () => {
   ];
 
   return (
-    <div ref={ref} className="py-16 bg-gradient-to-r from-[#1a237e] to-[#0d1452] relative overflow-hidden">
+    <div ref={ref} className="py-7 bg-gradient-to-r from-[#1a237e] to-[#0d1452] relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#f9a825] rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#f9a825] rounded-full blur-3xl"></div>
       </div>
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <div key={index} className="text-center text-white">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-[#f9a825] text-2xl">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-[#f9a825] text-xl sm:text-2xl">
                 {stat.icon}
               </div>
-              <div className="text-3xl md:text-4xl font-bold mb-2">
+              <div className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold mb-2">
                 {startCounting && <CountUp end={stat.number} duration={2.5} suffix={stat.suffix} />}
               </div>
               <p className="text-gray-300 text-sm">{stat.label}</p>

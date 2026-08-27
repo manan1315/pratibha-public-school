@@ -36,9 +36,9 @@ const PopupModal = () => {
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden animate-[fadeIn_0.3s_ease]">
         {popup.image && (
-          <img src={popup.image} alt={popup.title} className="w-full h-48 object-cover" />
+          <img src={popup.image} alt={popup.title} className="w-full h-36 object-cover" />
         )}
-        <div className="p-6">
+        <div className="p-4">
           <button onClick={dismiss} className="absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
             <FiX />
           </button>

@@ -59,19 +59,19 @@ const Admissions = () => {
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-20">
+      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mb-4">Admissions</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Admissions</h1>
           <p className="text-gray-300">Home / Admissions</p>
         </div>
       </div>
 
-      <section className="py-16 md:py-24">
+      <section className="py-7 md:py-7">
         <div className="max-w-7xl mx-auto px-4">
           {/* Process */}
           <div className="mb-16">
             <h2 className="section-title">Admission Process</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
               {steps.map((s, i) => (
                 <div key={i} className="card relative">
                   <div className="absolute -top-4 -left-4 w-10 h-10 bg-[#f9a825] text-[#1a237e] rounded-full flex items-center justify-center font-bold shadow">
@@ -88,16 +88,16 @@ const Admissions = () => {
           </div>
 
           {/* Form + age table */}
-          <div id="enquiry" className="grid md:grid-cols-2 gap-12 mb-16">
+          <div id="enquiry" className="grid md:grid-cols-2 gap-4 mb-16">
             <div>
               <h2 className="section-title">Admission Enquiry</h2>
-              <p className="text-gray-600 mb-6">Fill the form and our admission counsellor will contact you.</p>
+              <p className="text-gray-600 mb-4">Fill the form and our admission counsellor will contact you.</p>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-2.5">
                   <input name="studentName" value={formData.studentName} onChange={handleChange} placeholder="Student Name *" className="input-field" required />
                   <input name="parentName" value={formData.parentName} onChange={handleChange} placeholder="Parent Name *" className="input-field" required />
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-2.5">
                   <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email *" className="input-field" required />
                   <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone *" className="input-field" required />
                 </div>
@@ -114,7 +114,7 @@ const Admissions = () => {
 
             <div id="age">
               <h2 className="section-title">Age Criteria</h2>
-              <div className="overflow-x-auto mt-8">
+              <div className="overflow-x-auto mt-5">
                 <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
                   <thead className="bg-[#1a237e] text-white">
                     <tr>
@@ -135,7 +135,7 @@ const Admissions = () => {
                 </table>
               </div>
 
-              <h3 className="text-lg font-bold text-[#1a237e] mt-8 mb-3">Documents Required</h3>
+              <h3 className="text-sm sm:text-base font-bold text-[#1a237e] mt-5 mb-3">Documents Required</h3>
               <div className="space-y-2">
                 {documents.map((d, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm">
@@ -149,7 +149,7 @@ const Admissions = () => {
 
           {/* Fee Structure Table */}
           <div id="fees" className="mb-16">
-            <div className="flex flex-wrap gap-4 justify-between items-center mb-8">
+            <div className="flex flex-wrap gap-2.5 justify-between items-center mb-5">
               <div>
                 <h2 className="section-title">Fee Structure 2026-27</h2>
                 <p className="section-subtitle">Session-wise installment breakdown for all classes</p>
@@ -205,7 +205,7 @@ const Admissions = () => {
             </div>
 
             {/* Notes */}
-            <div className="mt-6 bg-[#f9a825]/10 border border-[#f9a825]/30 rounded-xl p-5">
+            <div className="mt-6 bg-[#f9a825]/10 border border-[#f9a825]/30 rounded-xl p-4">
               <h4 className="font-bold text-[#1a237e] mb-3">Important Notes:</h4>
               <div className="space-y-2">
                 <div className="flex items-start gap-2 text-sm">
@@ -228,11 +228,11 @@ const Admissions = () => {
           {downloads.length > 0 && (
             <div className="mb-16">
               <h2 className="section-title">Other Downloads</h2>
-              <div className="grid md:grid-cols-3 gap-4 mt-8">
+              <div className="grid md:grid-cols-3 gap-2.5 mt-5">
                 {downloads.map((d) => (
                   <a key={d._id} href={d.file} target="_blank" rel="noreferrer"
-                     className="card flex items-center gap-3 hover:border-[#f9a825]">
-                    <FiFileText className="text-[#1a237e] text-2xl flex-shrink-0" />
+                     className="card flex items-center gap-2.5 hover:border-[#f9a825]">
+                    <FiFileText className="text-[#1a237e] text-xl sm:text-2xl flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-[#1a237e] text-sm">{d.title}</h3>
                       <span className="text-xs text-gray-500">{d.category}</span>
@@ -249,12 +249,12 @@ const Admissions = () => {
             {faqs.length === 0 ? (
               <p className="text-gray-500 mt-6">FAQs will be published shortly.</p>
             ) : (
-              <div className="space-y-3 mt-8">
+              <div className="space-y-3 mt-5">
                 {faqs.map((f, i) => (
                   <div key={f._id} className="bg-white rounded-xl shadow-md overflow-hidden">
                     <button
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                      className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
+                      className="w-full flex items-center justify-between gap-2.5 px-5 py-4 text-left"
                     >
                       <span className="font-semibold text-[#1a237e]">{f.question}</span>
                       <FiChevronDown className={`flex-shrink-0 text-[#f9a825] transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />

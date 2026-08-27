@@ -69,7 +69,7 @@ const Navbar = () => {
       {/* Top Bar */}
       <div className="bg-[#1a237e] text-white py-2 px-4 text-sm hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
             <span className="flex items-center gap-1">
               <FiMapPin className="text-[#f9a825]" />
               <span className="truncate max-w-[200px]">Khatkhati, Basna, Mahasamund</span>
@@ -81,12 +81,12 @@ const Navbar = () => {
               </a>
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2.5">
             <a href={`tel:${SCHOOL_INFO.phone1}`} className="flex items-center gap-1 hover:text-[#f9a825] transition-colors">
               <FiPhone className="text-[#f9a825]" />
               {SCHOOL_INFO.phone1}
             </a>
-            <div className="flex items-center gap-3 ml-4">
+            <div className="flex items-center gap-2.5 ml-4">
               <a href="#" className="hover:text-[#f9a825] transition-colors"><FiFacebook /></a>
               <a href="https://www.instagram.com/pratibha_public_school_basna?igsi=MWFyZjZpODE3a3VteQ==" className="hover:text-[#f9a825] transition-colors" target="_blank" rel="noreferrer"><FiInstagram /></a>
               <a href="#" className="hover:text-[#f9a825] transition-colors"><FiYoutube /></a>
@@ -101,10 +101,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-2.5">
               <Logo size={56} />
               <div className="hidden sm:block">
-                <h1 className="text-lg font-bold text-[#1a237e] leading-tight font-['Playfair_Display']">
+                <h1 className="text-sm sm:text-base font-bold text-[#1a237e] leading-tight font-['Playfair_Display']">
                   PRATIBHA PUBLIC SCHOOL
                 </h1>
                 <p className="text-xs text-[#f9a825] font-semibold tracking-wider">BASNA</p>
@@ -153,7 +153,7 @@ const Navbar = () => {
             </div>
 
             {/* Right Side */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -183,7 +183,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden bg-white border-t shadow-xl">
-            <div className="max-h-[70vh] overflow-y-auto py-4 px-4">
+            <div className="max-h-[55vh] overflow-y-auto py-4 px-4">
               {navItems.map((item) => (
                 <div key={item.name}>
                   <Link

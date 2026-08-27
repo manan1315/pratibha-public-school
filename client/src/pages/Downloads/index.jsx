@@ -20,24 +20,24 @@ const Downloads = () => {
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-20">
+      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mb-4">Downloads</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Downloads</h1>
           <p className="text-gray-300">Home / Downloads</p>
         </div>
       </div>
 
-      <section className="py-16 md:py-24">
+      <section className="py-7 md:py-7">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-5">
             <h2 className="section-title">Downloadable Forms & Documents</h2>
             <p className="section-subtitle">Access important forms and documents</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {downloads.length > 0 ? downloads.map((item) => (
               <div key={item._id} className="card">
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-2.5 mb-3">
                   <div className="w-12 h-12 rounded-lg bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e]">
                     <FiFileText size={24} />
                   </div>
@@ -52,7 +52,7 @@ const Downloads = () => {
                 </a>
               </div>
             )) : (
-              <div className="col-span-3 text-center text-gray-500 py-8">No downloads available</div>
+              <div className="col-span-3 text-center text-gray-500 py-6">No downloads available</div>
             )}
           </div>
         </div>

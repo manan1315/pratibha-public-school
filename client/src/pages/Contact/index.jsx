@@ -25,25 +25,25 @@ const Contact = () => {
 
   return (
     <div>
-      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-20">
+      <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold font-['Playfair_Display'] mb-4">Contact Us</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Contact Us</h1>
           <p className="text-gray-300">Home / Contact</p>
         </div>
       </div>
 
-      <section className="py-16 md:py-24">
+      <section className="py-7 md:py-7">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-4">
             {/* Contact Form */}
             <div>
               <h2 className="section-title">Get in Touch</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2.5">
                   <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" className="input-field" required />
                   <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" className="input-field" required />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2.5">
                   <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" className="input-field" />
                   <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" className="input-field" required />
                 </div>
@@ -58,7 +58,7 @@ const Contact = () => {
             <div>
               <h2 className="section-title">Contact Information</h2>
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2.5">
                   <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e]">
                     <FiMapPin size={24} />
                   </div>
@@ -67,7 +67,7 @@ const Contact = () => {
                     <p className="text-gray-600 text-sm">{SCHOOL_INFO.address}</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2.5">
                   <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e]">
                     <FiPhone size={24} />
                   </div>
@@ -77,7 +77,7 @@ const Contact = () => {
                     <a href={`tel:${SCHOOL_INFO.phone2}`} className="text-gray-600 text-sm block hover:text-[#1a237e]">{SCHOOL_INFO.phone2}</a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2.5">
                   <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e]">
                     <FiMail size={24} />
                   </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                     <a href={`mailto:${SCHOOL_INFO.email}`} className="text-gray-600 text-sm hover:text-[#1a237e]">{SCHOOL_INFO.email}</a>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-2.5">
                   <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e]">
                     <FiClock size={24} />
                   </div>
