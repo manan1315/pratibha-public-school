@@ -69,7 +69,7 @@ const Admissions = () => {
       <section className="py-7 md:py-7">
         <div className="max-w-7xl mx-auto px-4">
           {/* Process */}
-          <div className="mb-16">
+          <div id="process" className="mb-16">
             <h2 className="section-title">Admission Process</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
               {steps.map((s, i) => (

@@ -51,7 +51,7 @@ const Navbar = () => {
       path: '/admissions',
       dropdown: [
         { name: 'Admission Enquiry', path: '/admissions#enquiry' },
-        { name: 'Admission Process', path: '/admissions' },
+        { name: 'Admission Process', path: '/admissions#process' },
         { name: 'Age Criteria', path: '/admissions#age' },
         { name: 'Fee Structure', path: '/admissions#fees' },
         { name: 'FAQs', path: '/admissions#faqs' },
