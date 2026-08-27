@@ -110,7 +110,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
               <Logo size={56} />
-              <div className="hidden sm:block">
+              <div>
                 <h1 className={`text-sm sm:text-base font-bold leading-tight font-['Playfair_Display'] ${scrolled || !isHome ? 'text-[#1a237e]' : 'text-white drop-shadow-md'}`}>
                   PRATIBHA PUBLIC SCHOOL
                 </h1>
