@@ -68,7 +68,7 @@ const Home = () => {
 
   return (
     <div>
-      <HeroSlider />
+      <HeroSlider fullscreen />
       <StatsCounter />
 
       {/* Welcome */}

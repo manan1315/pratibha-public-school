@@ -4,7 +4,7 @@ import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import { sliderAPI } from '../../services/api';
 
-const HeroSlider = () => {
+const HeroSlider = ({ fullscreen = false }) => {
   const [sliders, setSliders] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -24,7 +24,7 @@ const HeroSlider = () => {
 
   if (loading) {
     return (
-      <div className="h-[48vh] md:h-[60vh] bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center">
+      <div className={`${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[0d1452] flex items-center justify-center`}>
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
@@ -32,7 +32,7 @@ const HeroSlider = () => {
 
   if (sliders.length === 0) {
     return (
-      <div className="h-[48vh] md:h-[60vh] bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center">
+      <div className={`${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center`}>
         <div className="text-center text-white px-4">
           <h1 className="text-4xl md:text-6xl font-bold font-['Playfair_Display'] mb-4">
             PRATIBHA PUBLIC SCHOOL
@@ -44,7 +44,7 @@ const HeroSlider = () => {
   }
 
   return (
-    <div className="relative h-[48vh] md:h-[60vh]">
+    <div className={`relative ${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'}`}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation

@@ -10,6 +10,7 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const closeTimer = useRef(null);
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -96,17 +97,23 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-white shadow-sm'}`}>
+      <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg'
+          : isHome
+            ? 'bg-transparent shadow-none'
+            : 'bg-white shadow-sm'
+      }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
               <Logo size={56} />
               <div className="hidden sm:block">
-                <h1 className="text-sm sm:text-base font-bold text-[#1a237e] leading-tight font-['Playfair_Display']">
+                <h1 className={`text-sm sm:text-base font-bold leading-tight font-['Playfair_Display'] ${scrolled || !isHome ? 'text-[#1a237e]' : 'text-white drop-shadow-md'}`}>
                   PRATIBHA PUBLIC SCHOOL
                 </h1>
-                <p className="text-xs text-[#f9a825] font-semibold tracking-wider">BASNA</p>
+                <p className={`text-xs font-semibold tracking-wider ${scrolled || !isHome ? 'text-[#f9a825]' : 'text-[#f9a825] drop-shadow-md'}`}>BASNA</p>
               </div>
             </Link>
 
@@ -117,12 +124,10 @@ const Navbar = () => {
                   key={item.name}
                   className="relative"
                   onMouseEnter={() => {
-                    // cancel any in-progress close, then open
                     if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
                     if (item.dropdown) setDropdownOpen(item.name);
                   }}
                   onMouseLeave={() => {
-                    // delay close so cursor can travel the small gap into the menu
                     if (closeTimer.current) clearTimeout(closeTimer.current);
                     closeTimer.current = setTimeout(() => setDropdownOpen(null), 150);
                   }}
@@ -130,7 +135,9 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     className={`px-3 py-2 text-sm font-medium transition-colors duration-300 flex items-center gap-1 ${
-                      location.pathname === item.path ? 'text-[#1a237e]' : 'text-gray-700 hover:text-[#1a237e]'
+                      location.pathname === item.path
+                        ? (scrolled || !isHome ? 'text-[#1a237e]' : 'text-white')
+                        : (scrolled || !isHome ? 'text-gray-700 hover:text-[#1a237e]' : 'text-white/90 hover:text-white drop-shadow-md')
                     }`}
                   >
                     {item.name}
@@ -146,7 +153,6 @@ const Navbar = () => {
                     <div
                       className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl py-2 z-50 border border-gray-100"
                       onMouseEnter={() => {
-                        // cursor reached the menu — cancel any pending close
                         if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
                       }}
                       onMouseLeave={() => {
@@ -181,9 +187,9 @@ const Navbar = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled || !isHome ? 'hover:bg-gray-100' : 'hover:bg-white/10'}`}
               >
-                {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                {isOpen ? <FiX size={24} className={scrolled || !isHome ? '' : 'text-white'} /> : <FiMenu size={24} className={scrolled || !isHome ? '' : 'text-white'} />}
               </button>
             </div>
           </div>
