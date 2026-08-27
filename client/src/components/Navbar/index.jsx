@@ -61,6 +61,7 @@ const Navbar = () => {
     { name: 'Student Life', path: '/student-life' },
     { name: 'Facilities', path: '/facilities' },
     { name: 'Gallery', path: '/gallery' },
+    { name: 'Book List', path: '/book-list' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -179,7 +180,7 @@ const Navbar = () => {
             <div className="flex items-center gap-2.5">
               <Link
                 to="/admissions"
-                className="hidden md:inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-[#ffcc02] hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="hidden md:inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-4 py-2 rounded-full font-semibold text-sm hover:bg-[#ffcc02] hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Apply Now
               </Link>

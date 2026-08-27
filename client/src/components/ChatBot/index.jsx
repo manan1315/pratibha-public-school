@@ -101,7 +101,7 @@ const ChatBot = () => {
           </div>
 
           {/* Messages */}
-          <div ref={bodyRef} className="h-72 overflow-y-auto p-4 space-y-3 bg-gray-50">
+          <div ref={bodyRef} className="h-72 overflow-y-auto p-4 space-y-2.5 bg-gray-50">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div

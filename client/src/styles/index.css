@@ -37,19 +37,19 @@
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-lg p-5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+    @apply bg-white rounded-2xl shadow-lg p-4 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
   }
 
   .section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[#1a237e] mb-2 sm:mb-3;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[#1a237e] mb-1.5 sm:mb-2;
   }
 
   .section-subtitle {
-    @apply text-sm sm:text-base text-gray-600 mb-5 sm:mb-6;
+    @apply text-sm sm:text-base text-gray-600 mb-3 sm:mb-4;
   }
 
   .input-field {
-    @apply w-full px-3.5 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#1a237e] focus:ring-2 focus:ring-[#1a237e]/20 transition-all duration-300;
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-[#1a237e] focus:ring-2 focus:ring-[#1a237e]/20 transition-all duration-300;
   }
 
   .nav-link {

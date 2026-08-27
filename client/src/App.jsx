@@ -25,6 +25,7 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const NewsEvents = lazy(() => import('./pages/NewsEvents'));
 const Downloads = lazy(() => import('./pages/Downloads'));
+const BookList = lazy(() => import('./pages/BookList'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Admin pages
@@ -118,6 +119,7 @@ const App = () => {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/news-events" element={<NewsEvents />} />
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/book-list" element={<BookList />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

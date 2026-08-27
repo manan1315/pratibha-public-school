@@ -34,7 +34,7 @@ const HeroSlider = ({ fullscreen = false }) => {
     return (
       <div className={`${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center`}>
         <div className="text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold font-['Playfair_Display'] mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold font-['Playfair_Display'] mb-2.5">
             PRATIBHA PUBLIC SCHOOL
           </h1>
           <p className="text-xl md:text-xl sm:text-2xl text-[#f9a825]">Nurturing Minds, Shaping Futures</p>
@@ -67,16 +67,16 @@ const HeroSlider = ({ fullscreen = false }) => {
               <div className="absolute inset-0 flex items-center pointer-events-none">
                 <div className="max-w-7xl mx-auto px-4 w-full">
                   <div className="max-w-2xl text-white">
-                    <h2 className="text-xl sm:text-xl sm:text-2xl md:text-4xl lg:text-6xl font-bold font-['Playfair_Display'] mb-4 animate-[fadeInUp_0.8s_ease]">
+                    <h2 className="text-xl sm:text-xl sm:text-2xl md:text-4xl lg:text-6xl font-bold font-['Playfair_Display'] mb-2.5 animate-[fadeInUp_0.8s_ease]">
                       {slide.heading}
                     </h2>
-                    <p className="text-sm sm:text-base md:text-xl text-gray-200 mb-4 animate-[fadeInUp_1s_ease]">
+                    <p className="text-sm sm:text-base md:text-xl text-gray-200 mb-2.5 animate-[fadeInUp_1s_ease]">
                       {slide.subheading}
                     </p>
                     {slide.buttonText && (
                       <Link
                         to={slide.buttonLink || '/admissions'}
-                        className="pointer-events-auto inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-8 py-3 rounded-full font-semibold hover:bg-[#ffcc02] hover:shadow-xl hover:scale-105 transition-all duration-300 animate-[fadeInUp_1.2s_ease]"
+                        className="pointer-events-auto inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-5 py-2 rounded-full font-semibold hover:bg-[#ffcc02] hover:shadow-xl hover:scale-105 transition-all duration-300 animate-[fadeInUp_1.2s_ease]"
                       >
                         {slide.buttonText}
                       </Link>

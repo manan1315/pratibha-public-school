@@ -25,7 +25,7 @@ const TestimonialSlider = () => {
   return (
     <div className="py-7 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-5">
+        <div className="text-center mb-2">
           <h2 className="section-title">What Parents Say</h2>
           <p className="section-subtitle">Hear from our school community</p>
         </div>
@@ -41,12 +41,12 @@ const TestimonialSlider = () => {
           {testimonials.map((t) => (
             <SwiperSlide key={t._id}>
               <div className="bg-white rounded-2xl shadow-lg p-4 h-full">
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-2.5">
                   {[...Array(5)].map((_, i) => (
                     <FiStar key={i} className={i < t.rating ? 'text-[#f9a825] fill-[#f9a825]' : 'text-gray-300'} />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-4 italic">"{t.quote}"</p>
+                <p className="text-gray-600 mb-2.5 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-2.5">
                   {t.photo ? (
                     <img src={t.photo} alt={t.name} className="w-12 h-12 rounded-full object-cover" />

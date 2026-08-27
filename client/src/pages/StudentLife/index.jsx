@@ -14,19 +14,19 @@ const StudentLife = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Student Life</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Student Life</h1>
           <p className="text-gray-300">Home / Student Life</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-5">
+          <div className="text-center mb-2">
             <h2 className="section-title">Life at PPS Basna</h2>
             <p className="section-subtitle">Beyond academics — discovering talents, building friendships, creating memories</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-5">
+          <div className="grid md:grid-cols-2 gap-3 mb-2">
             {activities.map((activity, i) => (
               <div key={i} className="card flex items-start gap-2.5">
                 <div className="w-14 h-14 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl flex-shrink-0">

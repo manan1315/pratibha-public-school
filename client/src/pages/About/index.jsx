@@ -6,10 +6,10 @@ import useResource from '../../hooks/useResource';
 
 const Section = ({ icon, title, content, tint }) => (
   <div className="card text-center">
-    <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center text-xl sm:text-2xl ${tint}`}>
+    <div className={`w-16 h-16 mx-auto mb-2.5 rounded-full flex items-center justify-center text-xl sm:text-2xl ${tint}`}>
       {icon}
     </div>
-    <h3 className="text-xl font-bold text-[#1a237e] mb-3">{title}</h3>
+    <h3 className="text-xl font-bold text-[#1a237e] mb-2">{title}</h3>
     <p className="text-gray-600 text-sm">{content}</p>
   </div>
 );
@@ -33,15 +33,15 @@ const About = () => {
       {/* Hero Banner */}
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">About Us</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">About Us</h1>
           <p className="text-gray-300">Home / About Us</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
           {/* About our school */}
-          <div className="grid md:grid-cols-2 gap-4 items-center mb-16">
+          <div className="grid md:grid-cols-2 gap-3 items-center mb-8">
             <div>
               <h2 className="section-title">{welcome?.title || 'About Our School'}</h2>
               <p className="text-gray-600 leading-relaxed whitespace-pre-line">
@@ -60,7 +60,7 @@ const About = () => {
           </div>
 
           {/* Vision / Mission / Ethos */}
-          <div id="vision" className="grid md:grid-cols-3 gap-4 mb-16">
+          <div id="vision" className="grid md:grid-cols-3 gap-3 mb-8">
             <Section
               icon={<FiTarget />}
               tint="bg-[#1a237e]/10 text-[#1a237e]"
@@ -83,7 +83,7 @@ const About = () => {
 
           {/* Managing committee */}
           {society && (
-            <div id="society" className="bg-gray-50 rounded-2xl p-4 mb-16">
+            <div id="society" className="bg-gray-50 rounded-2xl p-4 mb-8">
               <h2 className="section-title">{society.title}</h2>
               <p className="text-gray-600 leading-relaxed whitespace-pre-line">{society.content}</p>
             </div>
@@ -92,14 +92,14 @@ const About = () => {
           {/* Leadership */}
           {leadership.length > 0 && (
             <>
-              <div id="leadership" className="text-center mb-5">
+              <div id="leadership" className="text-center mb-2">
                 <h2 className="section-title">Our Leadership</h2>
                 <p className="section-subtitle">Meet the visionaries guiding PPS Basna</p>
               </div>
-              <div className="grid md:grid-cols-3 gap-4 mb-16">
+              <div className="grid md:grid-cols-3 gap-3 mb-8">
                 {leadership.map((p) => (
                   <div key={p._id} className="card text-center">
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-[#f9a825] bg-gray-100">
+                    <div className="w-32 h-32 mx-auto mb-2.5 rounded-full overflow-hidden border-4 border-[#f9a825] bg-gray-100">
                       {p.photo ? (
                         <img src={p.photo} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
                       ) : (
@@ -109,7 +109,7 @@ const About = () => {
                       )}
                     </div>
                     <h3 className="text-xl font-bold text-[#1a237e] mb-1">{p.name}</h3>
-                    <p className="text-[#f9a825] font-semibold mb-4">{p.designation}</p>
+                    <p className="text-[#f9a825] font-semibold mb-2.5">{p.designation}</p>
                     <p className="text-gray-600 text-sm italic">"{p.message}"</p>
                   </div>
                 ))}
@@ -120,14 +120,14 @@ const About = () => {
           {/* Faculty */}
           {faculty.length > 0 && (
             <>
-              <div id="faculty" className="text-center mb-5">
+              <div id="faculty" className="text-center mb-2">
                 <h2 className="section-title">Our Faculty</h2>
                 <p className="section-subtitle">Qualified and dedicated teachers</p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-16">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-8">
                 {faculty.map((t) => (
                   <div key={t._id} className="card text-center">
-                    <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-2 border-[#1a237e]/20 bg-gray-100">
+                    <div className="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden border-2 border-[#1a237e]/20 bg-gray-100">
                       {t.photo ? (
                         <img src={t.photo} alt={t.name} loading="lazy" className="w-full h-full object-cover" />
                       ) : (
@@ -149,14 +149,14 @@ const About = () => {
           {/* Student leadership */}
           {studentLeaders.length > 0 && (
             <>
-              <div className="text-center mb-5">
+              <div className="text-center mb-2">
                 <h2 className="section-title">Student Leadership</h2>
                 <p className="section-subtitle">Our student council for the current session</p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {studentLeaders.map((s) => (
                   <div key={s._id} className="card text-center">
-                    <div className="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden border-2 border-[#f9a825] bg-gray-100">
+                    <div className="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden border-2 border-[#f9a825] bg-gray-100">
                       {s.photo ? (
                         <img src={s.photo} alt={s.name} loading="lazy" className="w-full h-full object-cover" />
                       ) : (

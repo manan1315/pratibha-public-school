@@ -73,9 +73,9 @@ const Home = () => {
       <StatsCounter />
 
       {/* Welcome */}
-      <section className="py-7 md:py-7 bg-white">
+      <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-4 items-center">
+          <div className="grid md:grid-cols-2 gap-3 items-center">
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img
@@ -94,7 +94,7 @@ const Home = () => {
             </div>
             <div>
               <h2 className="section-title">{welcome?.title || 'Welcome to Pratibha Public School'}</h2>
-              <p className="text-gray-600 leading-relaxed mb-5 whitespace-pre-line">
+              <p className="text-gray-600 leading-relaxed mb-2 whitespace-pre-line">
                 {welcome?.content ||
                   'Pratibha Public School Basna, established in 1998, is a premier educational institution in Mahasamund district, Chhattisgarh, committed to nurturing young minds and shaping future leaders.'}
               </p>
@@ -105,16 +105,16 @@ const Home = () => {
       </section>
 
       {/* Why choose us */}
-      <section className="py-7 md:py-7 bg-gray-50">
+      <section className="py-4 md:py-5 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-5">
+          <div className="text-center mb-2">
             <h2 className="section-title">Why Choose Us</h2>
             <p className="section-subtitle">What makes Pratibha Public School the right choice for your child</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {whyChooseUs.map((item, i) => (
               <div key={i} className="card group">
-                <div className="w-14 h-14 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl mb-4 group-hover:bg-[#1a237e] group-hover:text-white transition-all duration-300">
+                <div className="w-14 h-14 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl mb-2.5 group-hover:bg-[#1a237e] group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold text-[#1a237e] mb-2">{item.title}</h3>
@@ -126,13 +126,13 @@ const Home = () => {
       </section>
 
       {/* Programs */}
-      <section className="py-7 md:py-7 bg-white">
+      <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-5">
+          <div className="text-center mb-2">
             <h2 className="section-title">Our Academic Programs</h2>
             <p className="section-subtitle">Comprehensive education from Pre-Primary to Senior Secondary</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {programs.map((p, i) => (
               <div key={i} className="rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
                 <div className={`bg-gradient-to-r ${p.color} p-4 text-white`}>
@@ -140,7 +140,7 @@ const Home = () => {
                   <p className="text-white/80 text-sm">Age: {p.age}</p>
                 </div>
                 <div className="p-4 bg-white">
-                  <p className="text-gray-600 text-sm mb-4">{p.desc}</p>
+                  <p className="text-gray-600 text-sm mb-2.5">{p.desc}</p>
                   <Link to="/academics" className="text-[#1a237e] font-semibold text-sm hover:text-[#f9a825] transition-colors">
                     Learn More →
                   </Link>
@@ -153,11 +153,11 @@ const Home = () => {
 
       {/* Principal's message — from admin */}
       {principal && (
-        <section className="py-7 md:py-7 bg-gradient-to-r from-[#1a237e] to-[#0d1452]">
+        <section className="py-4 md:py-5 bg-gradient-to-r from-[#1a237e] to-[#0d1452]">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-4 items-center">
+            <div className="grid md:grid-cols-2 gap-3 items-center">
               <div className="text-center md:text-left">
-                <div className="w-48 h-36 mx-auto md:mx-0 rounded-full border-4 border-[#f9a825] overflow-hidden shadow-2xl mb-4 bg-white/10">
+                <div className="w-48 h-28 mx-auto md:mx-0 rounded-full border-4 border-[#f9a825] overflow-hidden shadow-2xl mb-2.5 bg-white/10">
                   {principal.photo ? (
                     <img src={principal.photo} alt={principal.name} loading="lazy" className="w-full h-full object-cover" />
                   ) : (
@@ -170,8 +170,8 @@ const Home = () => {
                 <p className="text-[#f9a825] font-semibold">{principal.designation}</p>
               </div>
               <div className="text-white">
-                <h2 className="text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Principal's Message</h2>
-                <blockquote className="text-lg text-gray-300 italic leading-relaxed mb-4">
+                <h2 className="text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Principal's Message</h2>
+                <blockquote className="text-lg text-gray-300 italic leading-relaxed mb-2.5">
                   "{principal.message}"
                 </blockquote>
                 <p className="text-gray-400 text-sm">— {principal.name}, {principal.designation}</p>
@@ -182,9 +182,9 @@ const Home = () => {
       )}
 
       {/* News */}
-      <section className="py-7 md:py-7 bg-white">
+      <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap gap-2.5 justify-between items-center mb-5">
+          <div className="flex flex-wrap gap-2.5 justify-between items-center mb-2">
             <div>
               <h2 className="section-title">Latest News & Events</h2>
               <p className="section-subtitle">Stay updated with happenings at PPS</p>
@@ -194,11 +194,11 @@ const Home = () => {
           {news.length === 0 ? (
             <p className="text-center text-gray-500 py-6">News will be published shortly.</p>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {news.map((item) => (
                 <div key={item._id} className="card group">
                   {item.image && (
-                    <div className="h-36 overflow-hidden rounded-xl mb-4">
+                    <div className="h-28 overflow-hidden rounded-xl mb-2.5">
                       <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                   )}
@@ -216,13 +216,13 @@ const Home = () => {
 
       {/* Achievements */}
       {achievements.length > 0 && (
-        <section className="py-7 md:py-7 bg-gray-50">
+        <section className="py-4 md:py-5 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-5">
+            <div className="text-center mb-2">
               <h2 className="section-title">Student Achievements</h2>
               <p className="section-subtitle">Celebrating excellence in academics, sports and beyond</p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {achievements.slice(0, 6).map((item) => (
                 <div key={item._id} className="card flex items-start gap-2.5">
                   <div className="w-12 h-12 rounded-full bg-[#f9a825] flex items-center justify-center text-[#1a237e] flex-shrink-0">
@@ -243,9 +243,9 @@ const Home = () => {
 
       {/* Gallery */}
       {gallery.length > 0 && (
-        <section className="py-7 md:py-7 bg-white">
+        <section className="py-4 md:py-5 bg-white">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex flex-wrap gap-2.5 justify-between items-center mb-5">
+            <div className="flex flex-wrap gap-2.5 justify-between items-center mb-2">
               <div>
                 <h2 className="section-title">Photo Gallery</h2>
                 <p className="section-subtitle">Glimpses of life at PPS Basna</p>
@@ -268,23 +268,23 @@ const Home = () => {
 
       {/* Facilities — from admin */}
       {facilities.length > 0 && (
-        <section className="py-7 md:py-7 bg-gray-50">
+        <section className="py-4 md:py-5 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-5">
+            <div className="text-center mb-2">
               <h2 className="section-title">Our Facilities</h2>
               <p className="section-subtitle">Infrastructure built for holistic development</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {facilities.slice(0, 8).map((f) => (
                 <div key={f._id} className="bg-white rounded-2xl p-4 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl">
+                  <div className="w-16 h-16 mx-auto mb-2.5 rounded-full bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl">
                     {ICONS[f.icon] || <FiHomeIcon />}
                   </div>
                   <h3 className="font-semibold text-[#1a237e] text-sm">{f.title}</h3>
                 </div>
               ))}
             </div>
-            <div className="text-center mt-5">
+            <div className="text-center mt-3">
               <Link to="/facilities" className="btn-primary">Explore All Facilities</Link>
             </div>
           </div>
@@ -297,17 +297,17 @@ const Home = () => {
       {settings?.admissionBannerEnabled !== false && (
         <section className="py-7 bg-gradient-to-r from-[#f9a825] to-[#ffcc02]">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold text-[#1a237e] mb-4 font-['Playfair_Display']">
+            <h2 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold text-[#1a237e] mb-2.5 font-['Playfair_Display']">
               {settings?.admissionBannerText || 'Admissions Open for Session 2025-26'}
             </h2>
-            <p className="text-[#1a237e]/80 mb-5 max-w-2xl mx-auto">
+            <p className="text-[#1a237e]/80 mb-2 max-w-2xl mx-auto">
               Give your child the gift of quality education. Limited seats available.
             </p>
             <div className="flex flex-col sm:flex-row gap-2.5 justify-center">
-              <Link to="/admissions" className="bg-[#1a237e] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <Link to="/admissions" className="bg-[#1a237e] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-xl hover:scale-105 transition-all duration-300">
                 Apply Now
               </Link>
-              <Link to="/contact" className="bg-white text-[#1a237e] px-8 py-3 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <Link to="/contact" className="bg-white text-[#1a237e] px-5 py-2 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
                 Contact Us
               </Link>
             </div>

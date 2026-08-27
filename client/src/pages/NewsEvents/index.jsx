@@ -27,14 +27,14 @@ const NewsEvents = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">News & Events</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">News & Events</h1>
           <p className="text-gray-300">Home / News & Events</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-3 gap-3">
             {/* News */}
             <div className="md:col-span-2">
               <h2 className="section-title">Latest News</h2>
@@ -59,7 +59,7 @@ const NewsEvents = () => {
             {/* Events Sidebar */}
             <div>
               <h2 className="section-title">Upcoming Events</h2>
-              <div className="space-y-4">
+              <div className="space-y-2.5">
                 {events.length > 0 ? events.map((event) => (
                   <div key={event._id} className="card">
                     <div className="flex items-center gap-2.5 mb-2">

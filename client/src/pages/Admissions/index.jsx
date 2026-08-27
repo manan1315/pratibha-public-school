@@ -61,23 +61,23 @@ const Admissions = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Admissions</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Admissions</h1>
           <p className="text-gray-300">Home / Admissions</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
           {/* Process */}
-          <div id="process" className="mb-16">
+          <div id="process" className="mb-8">
             <h2 className="section-title">Admission Process</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
               {steps.map((s, i) => (
                 <div key={i} className="card relative">
                   <div className="absolute -top-4 -left-4 w-10 h-10 bg-[#f9a825] text-[#1a237e] rounded-full flex items-center justify-center font-bold shadow">
                     {i + 1}
                   </div>
-                  <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl mb-3 mt-2">
+                  <div className="w-12 h-12 rounded-xl bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl mb-2 mt-2">
                     {s.icon}
                   </div>
                   <h3 className="font-bold text-[#1a237e] mb-2">{s.title}</h3>
@@ -88,11 +88,11 @@ const Admissions = () => {
           </div>
 
           {/* Form + age table */}
-          <div id="enquiry" className="grid md:grid-cols-2 gap-4 mb-16">
+          <div id="enquiry" className="grid md:grid-cols-2 gap-3 mb-8">
             <div>
               <h2 className="section-title">Admission Enquiry</h2>
-              <p className="text-gray-600 mb-4">Fill the form and our admission counsellor will contact you.</p>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <p className="text-gray-600 mb-2.5">Fill the form and our admission counsellor will contact you.</p>
+              <form onSubmit={handleSubmit} className="space-y-2.5">
                 <div className="grid sm:grid-cols-2 gap-2.5">
                   <input name="studentName" value={formData.studentName} onChange={handleChange} placeholder="Student Name *" className="input-field" required />
                   <input name="parentName" value={formData.parentName} onChange={handleChange} placeholder="Parent Name *" className="input-field" required />
@@ -114,7 +114,7 @@ const Admissions = () => {
 
             <div id="age">
               <h2 className="section-title">Age Criteria</h2>
-              <div className="overflow-x-auto mt-5">
+              <div className="overflow-x-auto mt-3">
                 <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
                   <thead className="bg-[#1a237e] text-white">
                     <tr>
@@ -135,7 +135,7 @@ const Admissions = () => {
                 </table>
               </div>
 
-              <h3 className="text-sm sm:text-base font-bold text-[#1a237e] mt-5 mb-3">Documents Required</h3>
+              <h3 className="text-sm sm:text-base font-bold text-[#1a237e] mt-3 mb-2">Documents Required</h3>
               <div className="space-y-2">
                 {documents.map((d, i) => (
                   <div key={i} className="flex items-start gap-2 text-sm">
@@ -148,8 +148,8 @@ const Admissions = () => {
           </div>
 
           {/* Fee Structure Table */}
-          <div id="fees" className="mb-16">
-            <div className="flex flex-wrap gap-2.5 justify-between items-center mb-5">
+          <div id="fees" className="mb-8">
+            <div className="flex flex-wrap gap-2.5 justify-between items-center mb-2">
               <div>
                 <h2 className="section-title">Fee Structure 2026-27</h2>
                 <p className="section-subtitle">Session-wise installment breakdown for all classes</p>
@@ -157,7 +157,7 @@ const Admissions = () => {
               <a
                 href="/assets/fee-structure-2026-27.pdf"
                 download="PPS Basna Fee Structure 2026-27.pdf"
-                className="inline-flex items-center gap-2 bg-[#1a237e] text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-lg transition-all duration-300 text-sm"
+                className="inline-flex items-center gap-2 bg-[#1a237e] text-white px-4 py-2 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-lg transition-all duration-300 text-sm"
               >
                 <FiFileText size={16} /> Download PDF
               </a>
@@ -205,8 +205,8 @@ const Admissions = () => {
             </div>
 
             {/* Notes */}
-            <div className="mt-6 bg-[#f9a825]/10 border border-[#f9a825]/30 rounded-xl p-4">
-              <h4 className="font-bold text-[#1a237e] mb-3">Important Notes:</h4>
+            <div className="mt-4 bg-[#f9a825]/10 border border-[#f9a825]/30 rounded-xl p-4">
+              <h4 className="font-bold text-[#1a237e] mb-2">Important Notes:</h4>
               <div className="space-y-2">
                 <div className="flex items-start gap-2 text-sm">
                   <span className="text-[#f9a825] font-bold">1.</span>
@@ -226,9 +226,9 @@ const Admissions = () => {
 
           {/* Downloads from admin */}
           {downloads.length > 0 && (
-            <div className="mb-16">
+            <div className="mb-8">
               <h2 className="section-title">Other Downloads</h2>
-              <div className="grid md:grid-cols-3 gap-2.5 mt-5">
+              <div className="grid md:grid-cols-3 gap-2.5 mt-3">
                 {downloads.map((d) => (
                   <a key={d._id} href={d.file} target="_blank" rel="noreferrer"
                      className="card flex items-center gap-2.5 hover:border-[#f9a825]">
@@ -247,9 +247,9 @@ const Admissions = () => {
           <div id="faqs">
             <h2 className="section-title">Frequently Asked Questions</h2>
             {faqs.length === 0 ? (
-              <p className="text-gray-500 mt-6">FAQs will be published shortly.</p>
+              <p className="text-gray-500 mt-4">FAQs will be published shortly.</p>
             ) : (
-              <div className="space-y-3 mt-5">
+              <div className="space-y-2.5 mt-3">
                 {faqs.map((f, i) => (
                   <div key={f._id} className="bg-white rounded-xl shadow-md overflow-hidden">
                     <button

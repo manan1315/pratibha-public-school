@@ -22,22 +22,22 @@ const Achievements = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Achievements</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Achievements</h1>
           <p className="text-gray-300">Home / Achievements</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-5">
+          <div className="text-center mb-2">
             <h2 className="section-title">Student Achievements</h2>
             <p className="section-subtitle">Celebrating excellence in academics, sports, and co-curricular activities</p>
           </div>
 
           {/* Board Results */}
-          <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] rounded-2xl p-4 text-white mb-5">
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">CGBSE Board Results 2025</h3>
-            <div className="grid md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] rounded-2xl p-4 text-white mb-2">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2.5">CGBSE Board Results 2025</h3>
+            <div className="grid md:grid-cols-4 gap-3">
               <div className="text-center">
                 <div className="text-xl sm:text-xl sm:text-2xl font-bold text-[#f9a825]">98%</div>
                 <p className="text-sm text-gray-300">Pass Percentage</p>
@@ -58,11 +58,11 @@ const Achievements = () => {
           </div>
 
           {/* Achievements Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {achievements.length > 0 ? achievements.map((item) => (
               <div key={item._id} className="card">
                 {item.image && (
-                  <img src={item.image} alt={item.title} className="w-full h-36 object-cover rounded-xl mb-4" />
+                  <img src={item.image} alt={item.title} className="w-full h-28 object-cover rounded-xl mb-2.5" />
                 )}
                 <div className="flex items-center gap-2 mb-2">
                   <FiAward className="text-[#f9a825]" />

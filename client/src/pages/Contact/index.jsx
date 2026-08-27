@@ -27,18 +27,18 @@ const Contact = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Contact Us</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Contact Us</h1>
           <p className="text-gray-300">Home / Contact</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-3">
             {/* Contact Form */}
             <div>
               <h2 className="section-title">Get in Touch</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-2.5">
                 <div className="grid grid-cols-2 gap-2.5">
                   <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" className="input-field" required />
                   <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" className="input-field" required />

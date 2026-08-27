@@ -37,15 +37,15 @@ const Gallery = () => {
     <div>
       <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] py-8">
         <div className="max-w-7xl mx-auto px-4 text-center text-white">
-          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-4">Photo Gallery</h1>
+          <h1 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Photo Gallery</h1>
           <p className="text-gray-300">Home / Gallery</p>
         </div>
       </div>
 
-      <section className="py-7 md:py-7">
+      <section className="py-4 md:py-5">
         <div className="max-w-7xl mx-auto px-4">
           {/* Album Filter */}
-          <div className="flex flex-wrap gap-2.5 mb-5">
+          <div className="flex flex-wrap gap-2.5 mb-2">
             <button
               onClick={() => setSelectedAlbum(null)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
