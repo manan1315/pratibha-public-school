@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiMenu, FiX, FiPhone, FiMail, FiMapPin, FiFacebook, FiInstagram, FiTwitter, FiYoutube } from 'react-icons/fi';
-import { useTheme } from '../../context/ThemeContext';
 import { SCHOOL_INFO } from '../../utils/constants';
 import Logo from '../Logo';
 
@@ -11,7 +10,6 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(null);
   const closeTimer = useRef(null);
   const location = useLocation();
-  const { darkMode, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -173,14 +171,6 @@ const Navbar = () => {
 
             {/* Right Side */}
             <div className="flex items-center gap-2.5">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {darkMode ? '☀️' : '🌙'}
-              </button>
-              
               <Link
                 to="/admissions"
                 className="hidden md:inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-[#ffcc02] hover:shadow-lg hover:scale-105 transition-all duration-300"
