@@ -123,7 +123,7 @@ export function answer(question, data = {}) {
   const phone1 = settings.phone1 || '+91-91111-07333';
   const phone2 = settings.phone2 || '+91-91111-07334';
   const email = settings.email || 'ppskhatkhati@gmail.com';
-  const hours = settings.workingHours || 'Mon - Sat: 8:00 AM - 3:00 PM';
+  const hours = settings.workingHours || 'Mon - Sat: Primary 7:40 AM - 11:40 AM | Middle & Higher Secondary 7:40 AM - 1:40 PM';
   const address = settings.address
     || 'School Campus, Village: Khatkhati, Tehsil: Basna, Dist: Mahasamund, 493554 (Chhattisgarh)';
 

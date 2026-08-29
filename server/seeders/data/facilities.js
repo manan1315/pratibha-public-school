@@ -13,12 +13,12 @@ module.exports.facilities = [
 ];
 
 module.exports.busRoutes = [
-  { routeNumber: 'R-1', routeName: 'Basna Town Route', stops: ['Bus Stand Basna', 'Gandhi Chowk', 'Ward 5 Basna', 'Khatkhati Turn'], timing: 'Pickup 6:50 AM / Drop 3:30 PM', isActive: true },
-  { routeNumber: 'R-2', routeName: 'Khatkhati - School Route', stops: ['Khatkhati Village', 'Primary School Khatkhati', 'Temple Road', 'School Gate'], timing: 'Pickup 7:10 AM / Drop 3:20 PM', isActive: true },
-  { routeNumber: 'R-3', routeName: 'Pithora Road Route', stops: ['Pithora Chowk', 'Bharuamuda', 'Amlidiha', 'Basna Bypass'], timing: 'Pickup 6:35 AM / Drop 3:45 PM', isActive: true },
-  { routeNumber: 'R-4', routeName: 'Saraipali Road Route', stops: ['Saraipali Turn', 'Kurrubhata', 'Devri', 'Basna Chowk'], timing: 'Pickup 6:40 AM / Drop 3:40 PM', isActive: true },
-  { routeNumber: 'R-5', routeName: 'Sankra Route', stops: ['Sankra Bus Stop', 'Belsonda Road', 'Achhoti', 'School Gate'], timing: 'Pickup 6:55 AM / Drop 3:35 PM', isActive: true },
-  { routeNumber: 'R-6', routeName: 'Mahasamund Road Route', stops: ['Mahasamund Road Junction', 'Lafinkala', 'Tilakpali', 'Basna'], timing: 'Pickup 6:30 AM / Drop 3:50 PM', isActive: true },
+  { routeNumber: 'R-1', routeName: 'Basna Town Route', stops: ['Bus Stand Basna', 'Gandhi Chowk', 'Ward 5 Basna', 'Khatkhati Turn'], timing: 'Pickup 6:50 AM / Drop 1:50 PM', isActive: true },
+  { routeNumber: 'R-2', routeName: 'Khatkhati - School Route', stops: ['Khatkhati Village', 'Primary School Khatkhati', 'Temple Road', 'School Gate'], timing: 'Pickup 7:10 AM / Drop 1:40 PM', isActive: true },
+  { routeNumber: 'R-3', routeName: 'Pithora Road Route', stops: ['Pithora Chowk', 'Bharuamuda', 'Amlidiha', 'Basna Bypass'], timing: 'Pickup 6:35 AM / Drop 2:00 PM', isActive: true },
+  { routeNumber: 'R-4', routeName: 'Saraipali Road Route', stops: ['Saraipali Turn', 'Kurrubhata', 'Devri', 'Basna Chowk'], timing: 'Pickup 6:40 AM / Drop 1:55 PM', isActive: true },
+  { routeNumber: 'R-5', routeName: 'Sankra Route', stops: ['Sankra Bus Stop', 'Belsonda Road', 'Achhoti', 'School Gate'], timing: 'Pickup 6:55 AM / Drop 1:45 PM', isActive: true },
+  { routeNumber: 'R-6', routeName: 'Mahasamund Road Route', stops: ['Mahasamund Road Junction', 'Lafinkala', 'Tilakpali', 'Basna'], timing: 'Pickup 6:30 AM / Drop 2:05 PM', isActive: true },
 ];
 
 module.exports.downloads = [

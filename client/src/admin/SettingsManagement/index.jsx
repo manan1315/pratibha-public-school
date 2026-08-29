@@ -111,7 +111,7 @@ const SettingsManagement = () => {
             {text('email', 'Email')}
             {text('website', 'Website')}
           </div>
-          {text('workingHours', 'Working Hours', 'Mon - Sat: 8:00 AM - 3:00 PM')}
+          { text('workingHours', 'Working Hours', 'Mon - Sat: Primary 7:40 AM - 11:40 AM | Middle & Higher Secondary 7:40 AM - 1:40 PM') }
         </Card>
 
         <Card title="Social Media Links">

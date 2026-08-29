@@ -19,7 +19,7 @@ module.exports.testimonials = [
 
 module.exports.faqs = [
   { question: 'What is the admission process at PPS Basna?', answer: 'Submit the online enquiry form or visit the school office. Our counsellor will call you for an interaction, followed by an age-appropriate assessment. On selection, complete the documentation and fee payment to confirm admission.', category: 'Admissions', order: 1, isActive: true },
-  { question: 'What are the school timings?', answer: 'Monday to Saturday, 8:00 AM to 3:00 PM. Pre-primary classes end at 12:30 PM. The school office remains open till 4:00 PM.', category: 'General', order: 2, isActive: true },
+  { question: 'What are the school timings?', answer: 'Monday to Saturday: Primary 7:40 AM - 11:40 AM | Middle & Higher Secondary 7:40 AM - 1:40 PM. Pre-primary classes end at 11:40 AM. The school office remains open till 4:00 PM.', category: 'General', order: 2, isActive: true },
   { question: 'Is transport facility available?', answer: 'Yes. We operate buses on 6 routes covering Basna, Khatkhati, Pithora, Saraipali road and nearby villages within a 30 km radius. All buses have a trained driver and an attendant.', category: 'Transport', order: 3, isActive: true },
   { question: 'Which board is the school affiliated to?', answer: 'Pratibha Public School Basna is affiliated to CBSE (Central Board of Secondary Education) and offers classes from Nursery to Class 12.', category: 'Academics', order: 4, isActive: true },
   { question: 'What documents are required at the time of admission?', answer: 'Birth certificate, Aadhaar of student and parents, 4 passport photographs, Transfer Certificate (Class 2 onwards), previous report card, and an address proof.', category: 'Admissions', order: 5, isActive: true },
