@@ -13,37 +13,26 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  useEffect(() => { checkAuth(); }, []);
 
   const checkAuth = async () => {
     const token = localStorage.getItem('adminToken');
-    if (!token) {
-      setLoading(false);
-      return;
-    }
+    if (!token) { setLoading(false); return; }
     try {
-      const { data } = await authAPI.verify();
-      setUser(data.user);
-    } catch (error) {
-      localStorage.removeItem('adminToken');
-    }
+      const res = await authAPI.verify();
+      setUser(res.data.user);
+    } catch { localStorage.removeItem('adminToken'); }
     setLoading(false);
   };
 
   const login = async (email, password, captchaToken, captchaAnswer) => {
-    const { data } = await authAPI.login({ email, password, captchaToken, captchaAnswer });
-    localStorage.setItem('adminToken', data.token);
-    setUser(data.user);
-    return data;
+    const res = await authAPI.login({ email, password, captchaToken, captchaAnswer });
+    localStorage.setItem('adminToken', res.data.token);
+    setUser(res.data.user);
+    return res.data;
   };
 
-  const logout = () => {
-    localStorage.removeItem('adminToken');
-    setUser(null);
-  };
+  const logout = () => { localStorage.removeItem('adminToken'); setUser(null); };
 
-  const value = { user, login, logout, loading, setUser };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ user, login, logout, loading, setUser }}>{children}</AuthContext.Provider>;
 };
