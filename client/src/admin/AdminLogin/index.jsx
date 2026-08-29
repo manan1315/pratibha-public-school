@@ -44,15 +44,17 @@ const AdminLogin = () => {
     }
     setLoading(true);
     try {
-      await login(email, password, captcha.token, captchaAnswer);
+      const result = await login(email, password, captcha.token, String(captchaAnswer));
       toast.success('Login successful!');
       navigate(from, { replace: true });
     } catch (error) {
-      console.error('Login error:', error?.response?.data || error.message);
-      const msg = error?.response?.data?.message || 'Invalid credentials. Please try again.';
+      console.error('Login failed:', error);
+      const status = error?.response?.status;
+      const msg = error?.response?.data?.message || error?.message || 'Login failed. Please try again.';
       toast.error(msg);
       fetchCaptcha();
       setCaptchaAnswer('');
+      console.log('Error status:', status, 'Message:', msg);
     }
     setLoading(false);
   };

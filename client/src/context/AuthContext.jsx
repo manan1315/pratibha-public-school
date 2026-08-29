@@ -33,15 +33,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password, captchaToken, captchaAnswer) => {
-    try {
-      const res = await authAPI.login({ email, password, captchaToken, captchaAnswer });
-      localStorage.setItem('adminToken', res.data.token);
-      setUser(res.data.user);
-      return res.data;
-    } catch (err) {
-      // always throw so caller can handle
-      throw err;
-    }
+    const { data } = await authAPI.login({ email, password, captchaToken, captchaAnswer });
+    localStorage.setItem('adminToken', data.token);
+    setUser(data.user);
+    return data;
   };
 
   const logout = () => {
