@@ -22,7 +22,7 @@ const ChatBot = () => {
   const dataRef = useRef(null);
 
   useEffect(() => {
-    if (!isOpen || data) return;
+    if (!isOpen || dataRef.current) return;
     let alive = true;
     (async () => {
       const safe = (p, fb) => p.then((r) => r.data).catch(() => fb);
@@ -44,7 +44,7 @@ const ChatBot = () => {
       }
     })();
     return () => { alive = false; };
-  }, [isOpen, data]);
+  }, [isOpen]);
 
   useEffect(() => {
     const el = bodyRef.current;
@@ -60,7 +60,7 @@ const ChatBot = () => {
     setTyping(true);
 
     setTimeout(() => {
-      const d = dataRef.current || data || {};
+      const d = dataRef.current || {};
       const res = answer(q, d);
       setTyping(false);
       setMessages((prev) => [...prev, { from: 'bot', text: res.text, link: res.link }]);
