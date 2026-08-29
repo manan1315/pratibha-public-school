@@ -34,7 +34,7 @@ module.exports.about = [
   {
     section: 'welcome',
     title: 'Welcome to Pratibha Public School Basna',
-    content: 'Pratibha Public School Basna was established in 1998 by the Pratibha Shikshan Samiti with a clear purpose — to bring city-standard education to the children of Khatkhati, Basna and the surrounding villages of Mahasamund district. Today we are a CGBSE-affiliated co-educational school running from Nursery to Class 12, with over 1,500 students and 80 qualified teachers on a 10-acre campus.',
+    content: 'Pratibha Public School Basna was established in 1998 by the Pratibha Shikshan Samiti with a clear purpose — to bring city-standard education to the children of Khatkhati, Basna and the surrounding villages of Mahasamund district. Today we are a CBSE-affiliated co-educational school running from Nursery to Class 12, with over 1,500 students and 80 qualified teachers on a 10-acre campus.',
     image: IMG.campus,
   },
   {

@@ -41,7 +41,7 @@ module.exports.sliders = [
 
 module.exports.announcements = [
   { text: 'Admissions open for Session 2025-26 — Apply online or visit the school office.', link: '/admissions', isActive: true },
-  { text: 'CGBSE Class 10 & 12 results: 98% students passed with First Division.', link: '/achievements', isActive: true },
+  { text: 'CBSE Class 10 & 12 results: 98% students passed with First Division.', link: '/achievements', isActive: true },
   { text: 'Annual Sports Meet on 18th December — parents are cordially invited.', link: '/news-events', isActive: true },
   { text: 'Bus routes for the new session have been updated. Check Transportation.', link: '/facilities', isActive: true },
 ];

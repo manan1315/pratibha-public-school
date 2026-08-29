@@ -11,7 +11,7 @@ module.exports.news = [
     isActive: true,
   },
   {
-    title: 'PPS Students Shine in CGBSE Board Results',
+    title: 'PPS Students Shine in CBSE Board Results',
     content: 'Our Class 10 and Class 12 students recorded a 98% pass percentage with 15 distinctions. Three students featured in the district merit list. Congratulations to all students, parents and teachers for this remarkable achievement.',
     image: IMG.class,
     date: new Date('2025-05-10'),

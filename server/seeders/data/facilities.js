@@ -2,7 +2,7 @@ const IMG = require('./images');
 
 module.exports.facilities = [
   { title: 'Smart Classrooms', description: 'Every classroom from Class 1 to 12 is fitted with an interactive smart board and projector. Digital lesson content makes abstract concepts visual and easy to grasp.', images: [IMG.class], icon: 'monitor', order: 1, isActive: true },
-  { title: 'Science Laboratories', description: 'Separate, well-stocked Physics, Chemistry and Biology labs where students perform the full CGBSE practical syllabus under trained lab assistants.', images: [IMG.lab], icon: 'flask', order: 2, isActive: true },
+  { title: 'Science Laboratories', description: 'Separate, well-stocked Physics, Chemistry and Biology labs where students perform the full CBSE practical syllabus under trained lab assistants.', images: [IMG.lab], icon: 'flask', order: 2, isActive: true },
   { title: 'Computer Lab', description: 'A newly inaugurated air-conditioned lab with 40 workstations and high-speed internet. Coding and IT periods are part of the weekly timetable.', images: [IMG.lab], icon: 'cpu', order: 3, isActive: true },
   { title: 'Library', description: 'Over 6,000 books, reference encyclopaedias, competitive exam material and childrens literature, with a quiet reading room for 60 students.', images: [IMG.library], icon: 'book', order: 4, isActive: true },
   { title: 'Sports Ground', description: 'A large playground supporting cricket, football, kabaddi, kho-kho and athletics, plus courts for basketball and badminton.', images: [IMG.sports], icon: 'activity', order: 5, isActive: true },
