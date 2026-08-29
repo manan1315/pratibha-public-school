@@ -36,7 +36,7 @@ const Achievements = () => {
 
           {/* Board Results */}
           <div className="bg-gradient-to-r from-[#1a237e] to-[#0d1452] rounded-2xl p-4 text-white mb-2">
-            <h3 className="text-xl sm:text-2xl font-bold mb-2.5">CGBSE Board Results 2025</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-2.5">CBSE Board Results 2025</h3>
             <div className="grid md:grid-cols-4 gap-3">
               <div className="text-center">
                 <div className="text-xl sm:text-xl sm:text-2xl font-bold text-[#f9a825]">98%</div>

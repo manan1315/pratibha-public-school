@@ -24,7 +24,7 @@ const HeroSlider = ({ fullscreen = false }) => {
 
   if (loading) {
     return (
-      <div className={`${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[0d1452] flex items-center justify-center`}>
+      <div className={`${fullscreen ? 'h-[35vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[0d1452] flex items-center justify-center`}>
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
@@ -32,9 +32,9 @@ const HeroSlider = ({ fullscreen = false }) => {
 
   if (sliders.length === 0) {
     return (
-      <div className={`${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center`}>
+      <div className={`${fullscreen ? 'h-[35vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} bg-gradient-to-r from-[#1a237e] to-[#0d1452] flex items-center justify-center`}>
         <div className="text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold font-['Playfair_Display'] mb-2.5">
+          <h1 className="text-4xl md:text-6xl font-bold font-['Playfair_Display'] mb-4">
             PRATIBHA PUBLIC SCHOOL
           </h1>
           <p className="text-xl md:text-xl sm:text-2xl text-[#f9a825]">Nurturing Minds, Shaping Futures</p>
@@ -44,7 +44,7 @@ const HeroSlider = ({ fullscreen = false }) => {
   }
 
   return (
-    <div className={`relative ${fullscreen ? 'h-[100vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} ${fullscreen ? '-mt-[80px]' : ''}`}>
+    <div className={`relative ${fullscreen ? 'h-[35vh] md:h-[100vh]' : 'h-[48vh] md:h-[60vh]'} ${fullscreen ? '-mt-[80px]' : ''}`}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation

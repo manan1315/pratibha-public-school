@@ -298,7 +298,7 @@ export function answer(question, data = {}) {
     case 'classes':
       return {
         matched: true,
-        text: `We offer classes from Nursery to Class 12 (CGBSE).\n\nAge criteria as on 31st March:\n• Nursery — 3+ years\n• LKG — 4+ years\n• UKG — 5+ years\n• Class 1 — 6+ years\n\nFor Class 2 and above, admission depends on seat availability and a placement assessment.`,
+        text: `We offer classes from Nursery to Class 12 (CBSE).\n\nAge criteria as on 31st March:\n• Nursery — 3+ years\n• LKG — 4+ years\n• UKG — 5+ years\n• Class 1 — 6+ years\n\nFor Class 2 and above, admission depends on seat availability and a placement assessment.`,
         link: { label: 'Age criteria', to: '/admissions#age' },
       };
 
@@ -309,7 +309,7 @@ export function answer(question, data = {}) {
       }
       return {
         matched: true,
-        text: `We are affiliated to CGBSE (Chhattisgarh Board of Secondary Education) and teach from Nursery to Class 12.\n\nClass 11–12 streams: Science (PCM / PCB), Commerce and Humanities.`,
+        text: `We are affiliated to CBSE (Central Board of Secondary Education) and teach from Nursery to Class 12.\n\nClass 11–12 streams: Science (PCM / PCB), Commerce and Humanities.`,
         link: { label: 'Academics', to: '/academics' },
       };
     }
