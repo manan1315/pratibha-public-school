@@ -1,8 +1,9 @@
+const Contact = require('../models/Contact');
+
 exports.submitContact = async (req, res) => {
   try {
     const contact = await Contact.create(req.body);
     
-    // Send email only if email env vars are configured
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.EMAIL_HOST) {
       try {
         const { sendEmail } = require('../utils/sendEmail');
@@ -25,6 +26,33 @@ exports.submitContact = async (req, res) => {
     }
 
     res.status(201).json({ message: 'Message sent successfully', contact });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getContacts = async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.json(contacts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateContact = async (req, res) => {
+  try {
+    const contact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.json(contact);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteContact = async (req, res) => {
+  try {
+    await Contact.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Contact deleted' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
