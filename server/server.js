@@ -15,6 +15,7 @@ const { apiLimiter, authLimiter, formLimiter, speedLimiter, ipBlocker, headerVal
 const { generateCaptcha, verifyCaptcha } = require('./middleware/captcha');
 
 // Route imports
+const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
 const settingsRoutes = require('./routes/settingsRoutes');
 const sliderRoutes = require('./routes/sliderRoutes');
@@ -35,7 +36,6 @@ const subscriberRoutes = require('./routes/subscriberRoutes');
 const busRouteRoutes = require('./routes/busRouteRoutes');
 const downloadRoutes = require('./routes/downloadRoutes');
 const popupRoutes = require('./routes/popupRoutes');
-const contactRoutes = require('./routes/contactRoutes');
 const visitorRoutes = require('./routes/visitorRoutes');
 const studentLeaderRoutes = require('./routes/studentLeaderRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
@@ -95,6 +95,7 @@ app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/achievements', achievementRoutes);
 app.use('/api/facilities', facilityRoutes);
 app.use('/api/faqs', faqRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/announcements', announcementRoutes);
 app.use('/api/subscribers', subscriberRoutes);
 app.use('/api/bus-routes', busRouteRoutes);

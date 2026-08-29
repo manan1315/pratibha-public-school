@@ -4,6 +4,7 @@ exports.submitContact = async (req, res) => {
   try {
     const contact = await Contact.create(req.body);
     
+    // Only try to send email if all env vars are configured
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS && process.env.EMAIL_HOST) {
       try {
         const { sendEmail } = require('../utils/sendEmail');
