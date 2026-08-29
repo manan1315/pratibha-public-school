@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { FiLock, FiMail, FiArrowLeft, FiRefreshCw } from 'react-icons/fi';
+import { FiLock, FiMail, FiArrowLeft } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import Logo from '../../components/Logo';
 
@@ -9,39 +9,28 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [captcha, setCaptcha] = useState(null);
-  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [recaptchaToken, setRecaptchaToken] = useState('');
   const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/admin';
 
   useEffect(() => { if (user) navigate(from, { replace: true }); }, [user, from, navigate]);
-  useEffect(() => { fetchCaptcha(); }, []);
-
-  const fetchCaptcha = async () => {
-    try {
-      const res = await fetch('/api/captcha');
-      const data = await res.json();
-      setCaptcha(data);
-      setCaptchaAnswer('');
-    } catch { /* silent */ }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!captcha || !captchaAnswer) { toast.error('Please complete the CAPTCHA.'); return; }
+    if (!recaptchaToken) { toast.error('Please complete the CAPTCHA.'); return; }
     setLoading(true);
     try {
-      const result = await login(email, password, captcha.token, String(captchaAnswer));
+      await login(email, password, recaptchaToken);
       toast.success('Login successful!');
       navigate(from, { replace: true });
     } catch (error) {
-      console.error('Login failed:', error);
-      const msg = error?.response?.data?.message || error?.message || 'Login failed. Please try again.';
+      const msg = error?.response?.data?.message || 'Login failed. Please try again.';
       toast.error(msg);
-      fetchCaptcha();
-      setCaptchaAnswer('');
+      setRecaptchaToken('');
+      // Reset reCAPTCHA
+      if (window.grecaptcha) window.grecaptcha.reset();
     }
     setLoading(false);
   };
@@ -63,19 +52,18 @@ const AdminLogin = () => {
             <FiLock className="absolute left-3 top-3.5 text-gray-400" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1a237e]" required />
           </div>
-          {captcha && (
-            <div className="bg-gray-50 rounded-lg p-3">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs text-gray-500 font-medium">Security Check</span>
-                <button type="button" onClick={fetchCaptcha} className="text-gray-400 hover:text-[#1a237e] transition-colors"><FiRefreshCw size={14} /></button>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="bg-[#1a237e] text-white px-4 py-2 rounded-lg font-mono text-lg tracking-wider select-none">{captcha.question}</div>
-                <input type="number" value={captchaAnswer} onChange={(e) => setCaptchaAnswer(e.target.value)} placeholder="Answer" className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1a237e] text-center" required />
-              </div>
-            </div>
-          )}
-          <button type="submit" disabled={loading} className="w-full btn-primary py-3">{loading ? 'Signing In...' : 'Sign In'}</button>
+          {/* Google reCAPTCHA */}
+          <div className="flex justify-center">
+            <div
+              className="g-recaptcha"
+              data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              data-callback={(token) => setRecaptchaToken(token)}
+              data-expired-callback={() => setRecaptchaToken('')}
+            />
+          </div>
+          <button type="submit" disabled={loading || !recaptchaToken} className="w-full btn-primary py-3 disabled:opacity-50">
+            {loading ? 'Signing In...' : 'Sign In'}
+          </button>
         </form>
         {import.meta.env.DEV && <p className="text-center text-xs text-gray-400 mt-6">Dev only — admin@ppsbasna.com / PPS@admin2025</p>}
         <div className="mt-6 pt-5 border-t border-gray-100 text-center">
