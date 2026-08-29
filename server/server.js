@@ -101,7 +101,6 @@ app.use('/api/subscribers', subscriberRoutes);
 app.use('/api/bus-routes', busRouteRoutes);
 app.use('/api/downloads', downloadRoutes);
 app.use('/api/popups', popupRoutes);
-app.use('/api/contacts', contactRoutes);
 app.use('/api/visitors', visitorRoutes);
 app.use('/api/student-leaders', studentLeaderRoutes);
 app.use('/api/upload', uploadRoutes);
