@@ -10,11 +10,12 @@ module.exports.achievements = [
 ];
 
 module.exports.testimonials = [
-  { name: 'Ramesh Kumar Sahu', relation: 'Parent, Class 8', quote: 'My daughter joined PPS three years ago. The change in her confidence and spoken English is something I never expected in a school here in Basna. The teachers actually call us to discuss progress.', photo: IMG.man1, rating: 5, isActive: true },
-  { name: 'Sunita Chandrakar', relation: 'Parent, Class 5', quote: 'Clean campus, disciplined staff and safe transport. As a working mother, the peace of mind I get is priceless. Fees are also very reasonable compared to city schools.', photo: IMG.woman1, rating: 5, isActive: true },
-  { name: 'Nikita Sahu', relation: 'Alumna, Batch 2025', quote: 'The teachers here pushed me to aim beyond the district. I scored 96.4% in CBSE and got into an engineering college in Raipur. PPS built my foundation.', photo: IMG.woman2, rating: 5, isActive: true },
-  { name: 'Deepak Patel', relation: 'Parent, Class 11', quote: 'Science labs and the new computer lab are genuinely well-equipped. My son gets practical exposure that I only read about in books at his age.', photo: IMG.man2, rating: 4, isActive: true },
-  { name: 'Anjali Nayak', relation: 'Parent, Nursery', quote: 'The pre-primary section is so colourful and caring. My child cries when there is a holiday — that says everything about the teachers here.', photo: IMG.woman1, rating: 5, isActive: true },
+  { name: 'Ramesh Kumar Sahu', relation: 'Parent, Class 8', quote: 'Mere beti ko 3 saal pehle PPS mein admission diya tha. Umeed nahi thi ki itni chhote school mein itni acchi padhai hogi. Par ab confidence badh gaya hai, English bhi acchi bolti hai. Teachers ko bhi bahut shkriya hai.', photo: IMG.man1, rating: 5, isActive: true },
+  { name: 'Sunita Chandrakar', relation: 'Parent, Class 5', quote: 'Saf campus, disciplined staff aur safe transport. Working mother ke liye ye bahut important hai. Fees bhi city schools ke muqable bahut reasonable hai. Mujhe PPS par bharosa hai.', photo: IMG.woman1, rating: 5, isActive: true },
+  { name: 'Suresh Patel', relation: 'Parent, Class 11', quote: 'Science labs aur computer lab bahut acche hain. Mere bete ko practical exposure mil raha hai jo maine sirf books mein padha tha. Teachers bahut supportive hain.', photo: IMG.man2, rating: 4, isActive: true },
+  { name: 'Anjali Nayak', relation: 'Parent, Nursery', quote: 'Pre-primary section bahut colourful aur caring hai. Mera bachcha chutti ko rota hai — ye hi keh deta hai kitne acche teachers hain. Bahut accha school hai Basna mein.', photo: IMG.woman1, rating: 5, isActive: true },
+  { name: 'Rajesh Verma', relation: 'Parent, Class 10', quote: 'Mera beta PPS mein padhta hai. Result bahut accha raha hai CBSE mein. Teachers ne bahut mehnat ki hai. Transport bhi time par aata hai. Bahut satisfied hoon.', photo: IMG.man1, rating: 5, isActive: true },
+  { name: 'Priya Dwivedi', relation: 'Parent, Class 7', quote: 'School ka environment bahut accha hai. Discipline aur dono cheez dhyan mein rakhte hain. Mera beti bahut khush hai padhne mein. Fees bhi bahut reasonable hai.', photo: IMG.woman2, rating: 5, isActive: true },
 ];
 
 module.exports.faqs = [
