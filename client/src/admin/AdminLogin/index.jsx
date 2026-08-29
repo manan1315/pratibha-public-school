@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { FiLock, FiMail, FiArrowLeft } from 'react-icons/fi';
@@ -10,12 +10,46 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState('');
+  const [captchaRendered, setCaptchaRendered] = useState(false);
+  const captchaRef = useRef(null);
   const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/admin';
 
   useEffect(() => { if (user) navigate(from, { replace: true }); }, [user, from, navigate]);
+
+  // Explicitly render reCAPTCHA when script is ready
+  useEffect(() => {
+    const renderCaptcha = () => {
+      if (window.grecaptcha && captchaRef.current && !captchaRendered) {
+        try {
+          window.grecaptcha.render(captchaRef.current, {
+            sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
+            callback: (token) => setRecaptchaToken(token),
+            'expired-callback': () => setRecaptchaToken(''),
+          });
+          setCaptchaRendered(true);
+        } catch (e) {
+          // already rendered
+        }
+      }
+    };
+
+    // Try immediately
+    renderCaptcha();
+
+    // If grecaptcha not loaded yet, wait for it
+    const interval = setInterval(() => {
+      if (window.grecaptcha) {
+        renderCaptcha();
+        clearInterval(interval);
+      }
+    }, 500);
+
+    // Cleanup
+    return () => clearInterval(interval);
+  }, [captchaRendered]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,7 +63,6 @@ const AdminLogin = () => {
       const msg = error?.response?.data?.message || 'Login failed. Please try again.';
       toast.error(msg);
       setRecaptchaToken('');
-      // Reset reCAPTCHA
       if (window.grecaptcha) window.grecaptcha.reset();
     }
     setLoading(false);
@@ -54,12 +87,7 @@ const AdminLogin = () => {
           </div>
           {/* Google reCAPTCHA */}
           <div className="flex justify-center">
-            <div
-              className="g-recaptcha"
-              data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-              data-callback={(token) => setRecaptchaToken(token)}
-              data-expired-callback={() => setRecaptchaToken('')}
-            />
+            <div ref={captchaRef} id="g-recaptcha" />
           </div>
           <button type="submit" disabled={loading || !recaptchaToken} className="w-full btn-primary py-3 disabled:opacity-50">
             {loading ? 'Signing In...' : 'Sign In'}
