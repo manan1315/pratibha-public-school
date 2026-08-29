@@ -32,8 +32,8 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const login = async (email, password) => {
-    const { data } = await authAPI.login({ email, password });
+  const login = async (email, password, captchaToken, captchaAnswer) => {
+    const { data } = await authAPI.login({ email, password, captchaToken, captchaAnswer });
     localStorage.setItem('adminToken', data.token);
     setUser(data.user);
     return data;

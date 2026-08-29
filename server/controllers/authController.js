@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const { verifyCaptcha } = require('../middleware/captcha');
+const { recordFailedAttempt, recordSuccess } = require('../middleware/rateLimiter');
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE });
@@ -8,15 +10,28 @@ const generateToken = (id) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, captchaToken, captchaAnswer } = req.body;
+
+    // CAPTCHA verification
+    if (process.env.NODE_ENV === 'production') {
+      if (!captchaToken || !captchaAnswer) {
+        return res.status(400).json({ message: 'Please complete the CAPTCHA.' });
+      }
+      const captchaResult = verifyCaptcha(captchaToken, captchaAnswer);
+      if (!captchaResult.valid) {
+        return res.status(400).json({ message: captchaResult.message });
+      }
+    }
 
     const user = await User.findOne({ email });
     if (!user) {
+      recordFailedAttempt(req.ip);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      recordFailedAttempt(req.ip);
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
@@ -24,6 +39,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Account is deactivated' });
     }
 
+    recordSuccess(req.ip);
     user.lastLogin = new Date();
     await user.save();
 
@@ -52,7 +68,6 @@ exports.changePassword = async (req, res) => {
 
     const user = await User.findById(req.user._id);
     const isMatch = await bcrypt.compare(currentPassword, user.password);
-
     if (!isMatch) {
       return res.status(400).json({ message: 'Current password is incorrect' });
     }

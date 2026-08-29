@@ -11,7 +11,8 @@ dotenv.config();
 
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
-const { apiLimiter } = require('./middleware/rateLimiter');
+const { apiLimiter, authLimiter, formLimiter, speedLimiter, ipBlocker, headerValidation, recordFailedAttempt, recordSuccess } = require('./middleware/rateLimiter');
+const { generateCaptcha, verifyCaptcha } = require('./middleware/captcha');
 
 // Route imports
 const authRoutes = require('./routes/authRoutes');
@@ -48,7 +49,7 @@ if (mongoose.connection.readyState === 0) connectDB();
 // Security Middleware
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
-  contentSecurityPolicy: false, // React build + Google Fonts/Maps need inline styles & external frames
+  contentSecurityPolicy: false,
 }));
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
@@ -59,6 +60,7 @@ app.use(cors({
 }));
 app.use(compression());
 app.use(mongoSanitize());
+app.use(headerValidation);  // Don't trust X-Forwarded-For
 
 // Body Parsing
 app.use(express.json({ limit: '10mb' }));
@@ -66,12 +68,19 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Rate Limiting
 app.use('/api/', apiLimiter);
+app.use('/api/', speedLimiter);  // Progressive delay on abuse
 
 // Static Files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// CAPTCHA endpoint
+app.get('/api/captcha', ipBlocker, (req, res) => {
+  const captcha = generateCaptcha();
+  res.json(captcha);
+});
+
 // API Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', ipBlocker, authRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/sliders', sliderRoutes);
 app.use('/api/about', aboutRoutes);

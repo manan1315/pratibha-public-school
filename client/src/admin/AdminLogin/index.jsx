@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { FiLock, FiMail, FiArrowLeft } from 'react-icons/fi';
+import { FiLock, FiMail, FiArrowLeft, FiRefreshCw } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import Logo from '../../components/Logo';
 
@@ -9,27 +9,44 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [captcha, setCaptcha] = useState(null);
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
   const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Where the user was headed before being bounced to login
   const from = location.state?.from?.pathname || '/admin';
 
-  // Already signed in? Skip the form.
   useEffect(() => {
     if (user) navigate(from, { replace: true });
   }, [user, from, navigate]);
+
+  useEffect(() => {
+    fetchCaptcha();
+  }, []);
+
+  const fetchCaptcha = async () => {
+    try {
+      const res = await fetch('/api/captcha');
+      const data = await res.json();
+      setCaptcha(data);
+      setCaptchaAnswer('');
+    } catch {
+      // silent — captcha is best-effort on the client
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await login(email, password);
+      await login(email, password, captcha?.token, captchaAnswer);
       toast.success('Login successful!');
       navigate(from, { replace: true });
     } catch (error) {
       toast.error(error.response?.data?.message || 'Invalid credentials. Please try again.');
+      fetchCaptcha(); // refresh on failure
+      setCaptchaAnswer('');
     }
     setLoading(false);
   };
@@ -66,6 +83,36 @@ const AdminLogin = () => {
               required
             />
           </div>
+
+          {/* CAPTCHA */}
+          {captcha && (
+            <div className="bg-gray-50 rounded-lg p-3">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-gray-500 font-medium">Security Check</span>
+                <button
+                  type="button"
+                  onClick={fetchCaptcha}
+                  className="text-gray-400 hover:text-[#1a237e] transition-colors"
+                >
+                  <FiRefreshCw size={14} />
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="bg-[#1a237e] text-white px-4 py-2 rounded-lg font-mono text-lg tracking-wider select-none">
+                  {captcha.question}
+                </div>
+                <input
+                  type="number"
+                  value={captchaAnswer}
+                  onChange={(e) => setCaptchaAnswer(e.target.value)}
+                  placeholder="Answer"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1a237e] text-center"
+                  required
+                />
+              </div>
+            </div>
+          )}
+
           <button type="submit" disabled={loading} className="w-full btn-primary py-3">
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
