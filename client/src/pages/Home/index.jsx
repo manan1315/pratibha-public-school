@@ -20,6 +20,23 @@ const ICONS = {
   heart: <FiHeart />, shield: <FiShield />,
 };
 
+const whyChooseUs = [
+  { icon: <FiBookOpen />, title: 'Academic Excellence', desc: 'Rigorous curriculum with focus on conceptual learning and critical thinking' },
+  { icon: <FiUsers />, title: 'Expert Faculty', desc: 'Highly qualified and dedicated teachers committed to student success' },
+  { icon: <FiMonitor />, title: 'Smart Classrooms', desc: 'Technology-enabled learning with interactive digital content' },
+  { icon: <FiHeart />, title: 'Holistic Development', desc: 'Focus on character building, values and life skills' },
+  { icon: <FiAward />, title: 'Proven Results', desc: 'Consistent board results and district-level achievements' },
+  { icon: <FiShield />, title: 'Safe Environment', desc: 'CCTV surveillance, trained staff and a secure campus' },
+];
+
+const programs = [
+  { name: 'Pre-Primary', age: '3-6 years', desc: 'Play-based learning with focus on creativity and social skills', color: 'from-pink-500 to-rose-500' },
+  { name: 'Primary', age: '6-11 years', desc: 'Strong foundation in core subjects with activity-based learning', color: 'from-blue-500 to-cyan-500' },
+  { name: 'Middle School', age: '11-14 years', desc: 'Interdisciplinary approach with project-based learning', color: 'from-green-500 to-emerald-500' },
+  { name: 'Secondary', age: '14-16 years', desc: 'Board preparation with career guidance and counselling', color: 'from-purple-500 to-violet-500' },
+  { name: 'Senior Secondary', age: '16-18 years', desc: 'Specialised streams with competitive exam preparation', color: 'from-orange-500 to-amber-500' },
+];
+
 const Home = () => {
   const { data: news } = useResource(newsAPI.getFeatured);
   const { data: gallery } = useResource(galleryAPI.getImages);
@@ -50,45 +67,21 @@ const Home = () => {
     setSubscribing(false);
   };
 
-  const whyChooseUs = [
-    { icon: <FiBookOpen />, title: 'Academic Excellence', desc: 'Rigorous curriculum with focus on conceptual learning and critical thinking' },
-    { icon: <FiUsers />, title: 'Expert Faculty', desc: 'Highly qualified and dedicated teachers committed to student success' },
-    { icon: <FiMonitor />, title: 'Smart Classrooms', desc: 'Technology-enabled learning with interactive digital content' },
-    { icon: <FiHeart />, title: 'Holistic Development', desc: 'Focus on character building, values and life skills' },
-    { icon: <FiAward />, title: 'Proven Results', desc: 'Consistent board results and district-level achievements' },
-    { icon: <FiShield />, title: 'Safe Environment', desc: 'CCTV surveillance, trained staff and a secure campus' },
-  ];
-
-  const programs = [
-    { name: 'Pre-Primary', age: '3-6 years', desc: 'Play-based learning with focus on creativity and social skills', color: 'from-pink-500 to-rose-500' },
-    { name: 'Primary', age: '6-11 years', desc: 'Strong foundation in core subjects with activity-based learning', color: 'from-blue-500 to-cyan-500' },
-    { name: 'Middle School', age: '11-14 years', desc: 'Interdisciplinary approach with project-based learning', color: 'from-green-500 to-emerald-500' },
-    { name: 'Secondary', age: '14-16 years', desc: 'Board preparation with career guidance and counselling', color: 'from-purple-500 to-violet-500' },
-    { name: 'Senior Secondary', age: '16-18 years', desc: 'Specialised streams with competitive exam preparation', color: 'from-orange-500 to-amber-500' },
-  ];
-
   return (
     <div>
-      {/* Hero sits behind the sticky transparent navbar */}
       <HeroSlider fullscreen />
       <StatsCounter />
 
-      {/* Welcome */}
       <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-3 items-center">
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src={welcome?.image || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'}
-                  alt="School campus"
-                  loading="lazy"
-                  className="w-full h-[400px] object-cover"
-                />
+                <img src={welcome?.image || 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800'} alt="School campus" loading="lazy" className="w-full h-[400px] object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#f9a825] rounded-2xl flex items-center justify-center shadow-xl">
                 <div className="text-center">
-                  <span className="text-xl sm:text-xl sm:text-2xl font-bold text-[#1a237e]">25+</span>
+                  <span className="text-xl sm:text-2xl font-bold text-[#1a237e]">25+</span>
                   <p className="text-xs text-[#1a237e] font-semibold">Years</p>
                 </div>
               </div>
@@ -96,8 +89,7 @@ const Home = () => {
             <div>
               <h2 className="section-title">{welcome?.title || 'Welcome to Pratibha Public School'}</h2>
               <p className="text-gray-600 leading-relaxed mb-2 whitespace-pre-line">
-                {welcome?.content ||
-                  'Pratibha Public School Basna, established in 1998, is a premier educational institution in Mahasamund district, Chhattisgarh, committed to nurturing young minds and shaping future leaders.'}
+                {welcome?.content || 'Pratibha Public School Basna, established in 1998, is a premier educational institution in Mahasamund district, Chhattisgarh, committed to nurturing young minds and shaping future leaders.'}
               </p>
               <Link to="/about" className="btn-primary inline-flex items-center gap-2">Read More</Link>
             </div>
@@ -105,7 +97,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why choose us */}
       <section className="py-4 md:py-5 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-2">
@@ -126,7 +117,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Programs */}
       <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-2">
@@ -142,9 +132,7 @@ const Home = () => {
                 </div>
                 <div className="p-4 bg-white">
                   <p className="text-gray-600 text-sm mb-2.5">{p.desc}</p>
-                  <Link to="/academics" className="text-[#1a237e] font-semibold text-sm hover:text-[#f9a825] transition-colors">
-                    Learn More →
-                  </Link>
+                  <Link to="/academics" className="text-[#1a237e] font-semibold text-sm hover:text-[#f9a825] transition-colors">Learn More →</Link>
                 </div>
               </div>
             ))}
@@ -152,7 +140,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Principal's message — from admin */}
       {principal && (
         <section className="py-4 md:py-5 bg-gradient-to-r from-[#1a237e] to-[#0d1452]">
           <div className="max-w-7xl mx-auto px-4">
@@ -162,19 +149,15 @@ const Home = () => {
                   {principal.photo ? (
                     <img src={principal.photo} alt={principal.name} loading="lazy" className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-[#f9a825]">
-                      {principal.name?.charAt(0)}
-                    </div>
+                    <div className="w-full h-full flex items-center justify-center text-4xl font-bold text-[#f9a825]">{principal.name?.charAt(0)}</div>
                   )}
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">{principal.name}</h3>
                 <p className="text-[#f9a825] font-semibold">{principal.designation}</p>
               </div>
               <div className="text-white">
-                <h2 className="text-xl sm:text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Principal's Message</h2>
-                <blockquote className="text-lg text-gray-300 italic leading-relaxed mb-2.5">
-                  "{principal.message}"
-                </blockquote>
+                <h2 className="text-xl sm:text-2xl font-bold font-['Playfair_Display'] mb-2.5">Principal's Message</h2>
+                <blockquote className="text-lg text-gray-300 italic leading-relaxed mb-2.5">"{principal.message}"</blockquote>
                 <p className="text-gray-400 text-sm">— {principal.name}, {principal.designation}</p>
               </div>
             </div>
@@ -182,7 +165,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* News */}
       <section className="py-4 md:py-5 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-wrap gap-2.5 justify-between items-center mb-2">
@@ -203,9 +185,7 @@ const Home = () => {
                       <img src={item.image} alt={item.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                     </div>
                   )}
-                  <span className="text-xs text-[#f9a825] font-semibold">
-                    {new Date(item.date || item.createdAt).toLocaleDateString('en-IN')}
-                  </span>
+                  <span className="text-xs text-[#f9a825] font-semibold">{new Date(item.date || item.createdAt).toLocaleDateString('en-IN')}</span>
                   <h3 className="text-sm sm:text-base font-bold text-[#1a237e] mt-2 mb-2">{item.title}</h3>
                   <p className="text-gray-600 text-sm line-clamp-3">{item.content?.replace(/<[^>]*>/g, '')}</p>
                 </div>
@@ -215,7 +195,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Achievements */}
       {achievements.length > 0 && (
         <section className="py-4 md:py-5 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
@@ -226,14 +205,10 @@ const Home = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
               {achievements.slice(0, 6).map((item) => (
                 <div key={item._id} className="card flex items-start gap-2.5">
-                  <div className="w-12 h-12 rounded-full bg-[#f9a825] flex items-center justify-center text-[#1a237e] flex-shrink-0">
-                    <FiAward size={22} />
-                  </div>
+                  <div className="w-12 h-12 rounded-full bg-[#f9a825] flex items-center justify-center text-[#1a237e] flex-shrink-0"><FiAward size={22} /></div>
                   <div>
                     <h3 className="font-bold text-[#1a237e] mb-1">{item.title}</h3>
-                    <p className="text-sm text-gray-600">
-                      {item.studentName && `${item.studentName} • `}{item.year}
-                    </p>
+                    <p className="text-sm text-gray-600">{item.studentName && `${item.studentName} • `}{item.year}</p>
                   </div>
                 </div>
               ))}
@@ -242,7 +217,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* Gallery */}
       {gallery.length > 0 && (
         <section className="py-4 md:py-5 bg-white">
           <div className="max-w-7xl mx-auto px-4">
@@ -267,7 +241,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* Facilities — from admin */}
       {facilities.length > 0 && (
         <section className="py-4 md:py-5 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4">
@@ -277,11 +250,7 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {facilities.slice(0, 8).map((f) => (
-                <div
-                  key={f._id}
-                  onClick={() => f.images?.length > 0 && setFacilityGallery(f)}
-                  className={`bg-white rounded-2xl p-4 text-center shadow-lg transition-all duration-300 ${f.images?.length > 0 ? 'cursor-pointer hover:shadow-2xl hover:-translate-y-2 touch-manipulation' : ''}`}
-                >
+                <div key={f._id} onClick={() => f.images?.length > 0 && setFacilityGallery(f)} className={`bg-white rounded-2xl p-4 text-center shadow-lg transition-all duration-300 ${f.images?.length > 0 ? 'cursor-pointer hover:shadow-2xl hover:-translate-y-2 touch-manipulation' : ''}`}>
                   <div className="w-16 h-16 mx-auto mb-2.5 rounded-full bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl">
                     {ICONS[f.icon] || <FiHomeIcon />}
                   </div>
@@ -296,15 +265,9 @@ const Home = () => {
         </section>
       )}
 
-      {/* Facility Image Gallery Lightbox */}
       {facilityGallery && (
         <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center" onClick={() => setFacilityGallery(null)}>
-          <button
-            onClick={(e) => { e.stopPropagation(); setFacilityGallery(null); }}
-            className="absolute top-4 right-4 text-white text-3xl z-50 p-2 hover:bg-white/10 rounded-full transition-colors"
-          >
-            <FiX />
-          </button>
+          <button onClick={(e) => { e.stopPropagation(); setFacilityGallery(null); }} className="absolute top-4 right-4 text-white text-3xl z-50 p-2 hover:bg-white/10 rounded-full transition-colors"><FiX /></button>
           <div className="w-full h-full flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
             <div className="max-w-4xl w-full">
               <h3 className="text-white text-xl font-bold text-center mb-4">{facilityGallery.title}</h3>
@@ -315,9 +278,7 @@ const Home = () => {
                   </div>
                 ))}
               </div>
-              {facilityGallery.description && (
-                <p className="text-gray-300 text-center mt-4 text-sm">{facilityGallery.description}</p>
-              )}
+              {facilityGallery.description && <p className="text-gray-300 text-center mt-4 text-sm">{facilityGallery.description}</p>}
             </div>
           </div>
         </div>
@@ -325,43 +286,28 @@ const Home = () => {
 
       <TestimonialSlider />
 
-      {/* CTA */}
       {settings?.admissionBannerEnabled !== false && (
         <section className="py-7 bg-gradient-to-r from-[#f9a825] to-[#ffcc02]">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-xl sm:text-xl sm:text-2xl font-bold text-[#1a237e] mb-2.5 font-['Playfair_Display']">
+            <h2 className="text-3xl md:text-xl sm:text-2xl font-bold text-[#1a237e] mb-2.5 font-['Playfair_Display']">
               {settings?.admissionBannerText || 'Admissions Open for Session 2025-26'}
             </h2>
-            <p className="text-[#1a237e]/80 mb-2 max-w-2xl mx-auto">
-              Give your child the gift of quality education. Limited seats available.
-            </p>
+            <p className="text-[#1a237e]/80 mb-2 max-w-2xl mx-auto">Give your child the gift of quality education. Limited seats available.</p>
             <div className="flex flex-col sm:flex-row gap-2.5 justify-center">
-              <Link to="/admissions" className="bg-[#1a237e] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-xl hover:scale-105 transition-all duration-300">
-                Apply Now
-              </Link>
-              <Link to="/contact" className="bg-white text-[#1a237e] px-5 py-2 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">
-                Contact Us
-              </Link>
+              <Link to="/admissions" className="bg-[#1a237e] text-white px-5 py-2 rounded-full font-semibold hover:bg-[#0d1452] hover:shadow-xl hover:scale-105 transition-all duration-300">Apply Now</Link>
+              <Link to="/contact" className="bg-white text-[#1a237e] px-5 py-2 rounded-full font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300">Contact Us</Link>
             </div>
           </div>
         </section>
       )}
 
-      {/* Newsletter */}
       <section className="py-7 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="max-w-xl mx-auto text-center">
             <h2 className="section-title">Stay Connected</h2>
             <p className="section-subtitle">Subscribe to our newsletter for updates</p>
             <form className="flex flex-col sm:flex-row gap-2.5" onSubmit={subscribe}>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="input-field flex-1"
-                required
-              />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="input-field flex-1" required />
               <button type="submit" disabled={subscribing} className="btn-primary whitespace-nowrap disabled:opacity-60">
                 {subscribing ? 'Subscribing...' : 'Subscribe'}
               </button>

@@ -26,8 +26,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', path: '/' },
     {
-      name: 'About Us',
-      path: '/about',
+      name: 'About Us', path: '/about',
       dropdown: [
         { name: 'About Our School', path: '/about' },
         { name: 'Our Ethos & Values', path: '/about#ethos' },
@@ -37,8 +36,7 @@ const Navbar = () => {
       ],
     },
     {
-      name: 'Academics',
-      path: '/academics',
+      name: 'Academics', path: '/academics',
       dropdown: [
         { name: 'Pedagogy & Assessment', path: '/academics' },
         { name: 'Curriculum Overview', path: '/academics#curriculum' },
@@ -47,8 +45,7 @@ const Navbar = () => {
       ],
     },
     {
-      name: 'Admissions',
-      path: '/admissions',
+      name: 'Admissions', path: '/admissions',
       dropdown: [
         { name: 'Admission Enquiry', path: '/admissions#enquiry' },
         { name: 'Admission Process', path: '/admissions#process' },
@@ -67,7 +64,6 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Bar */}
       <div className="bg-[#1a237e] text-white py-2 px-4 text-sm hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2.5">
@@ -97,28 +93,21 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : isHome
-            ? 'bg-transparent shadow-none'
-            : 'bg-white shadow-sm'
+        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : isHome ? 'bg-transparent shadow-none' : 'bg-white shadow-sm'
       }`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center h-20">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5">
               <Logo size={56} />
               <div>
                 <h1 className={`text-sm sm:text-base font-bold leading-tight font-['Playfair_Display'] ${scrolled || !isHome ? 'text-[#1a237e]' : 'text-white drop-shadow-md'}`}>
                   PRATIBHA PUBLIC SCHOOL
                 </h1>
-                <p className={`text-xs font-semibold tracking-wider ${scrolled || !isHome ? 'text-[#f9a825]' : 'text-[#f9a825] drop-shadow-md'}`}>BASNA</p>
+                <p className="text-xs font-semibold tracking-wider text-[#f9a825] drop-shadow-md">BASNA</p>
               </div>
             </Link>
 
-            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-1">
               {navItems.map((item) => (
                 <div
@@ -148,25 +137,14 @@ const Navbar = () => {
                       </svg>
                     )}
                   </Link>
-                  
-                  {/* Dropdown */}
                   {item.dropdown && dropdownOpen === item.name && (
                     <div
                       className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-2xl py-2 z-50 border border-gray-100"
-                      onMouseEnter={() => {
-                        if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; }
-                      }}
-                      onMouseLeave={() => {
-                        if (closeTimer.current) clearTimeout(closeTimer.current);
-                        closeTimer.current = setTimeout(() => setDropdownOpen(null), 150);
-                      }}
+                      onMouseEnter={() => { if (closeTimer.current) { clearTimeout(closeTimer.current); closeTimer.current = null; } }}
+                      onMouseLeave={() => { if (closeTimer.current) clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setDropdownOpen(null), 150); }}
                     >
                       {item.dropdown.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.path}
-                          className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#1a237e]/5 hover:text-[#1a237e] transition-colors"
-                        >
+                        <Link key={subItem.name} to={subItem.path} className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#1a237e]/5 hover:text-[#1a237e] transition-colors">
                           {subItem.name}
                         </Link>
                       ))}
@@ -176,46 +154,29 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Right Side */}
             <div className="flex items-center gap-2.5">
-              <Link
-                to="/admissions"
-                className="hidden md:inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-4 py-2 rounded-full font-semibold text-sm hover:bg-[#ffcc02] hover:shadow-lg hover:scale-105 transition-all duration-300"
-              >
+              <Link to="/admissions" className="hidden md:inline-flex items-center gap-2 bg-[#f9a825] text-[#1a237e] px-4 py-2 rounded-full font-semibold text-sm hover:bg-[#ffcc02] hover:shadow-lg hover:scale-105 transition-all duration-300">
                 Apply Now
               </Link>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled || !isHome ? 'hover:bg-gray-100' : 'hover:bg-white/10'}`}
-              >
+              <button onClick={() => setIsOpen(!isOpen)} className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled || !isHome ? 'hover:bg-gray-100' : 'hover:bg-white/10'}`}>
                 {isOpen ? <FiX size={24} className={scrolled || !isHome ? '' : 'text-white'} /> : <FiMenu size={24} className={scrolled || !isHome ? '' : 'text-white'} />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isOpen && (
           <div className="lg:hidden bg-white border-t shadow-xl">
             <div className="max-h-[55vh] overflow-y-auto py-4 px-4">
               {navItems.map((item) => (
                 <div key={item.name}>
-                  <Link
-                    to={item.path}
-                    className="block py-3 px-4 text-gray-700 font-medium hover:bg-[#1a237e]/5 hover:text-[#1a237e] rounded-lg transition-colors"
-                  >
+                  <Link to={item.path} className="block py-3 px-4 text-gray-700 font-medium hover:bg-[#1a237e]/5 hover:text-[#1a237e] rounded-lg transition-colors">
                     {item.name}
                   </Link>
                   {item.dropdown && (
                     <div className="ml-4 border-l-2 border-[#f9a825] pl-4">
                       {item.dropdown.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.path}
-                          className="block py-2 px-4 text-sm text-gray-600 hover:text-[#1a237e] transition-colors"
-                        >
+                        <Link key={subItem.name} to={subItem.path} className="block py-2 px-4 text-sm text-gray-600 hover:text-[#1a237e] transition-colors">
                           {subItem.name}
                         </Link>
                       ))}
@@ -224,10 +185,7 @@ const Navbar = () => {
                 </div>
               ))}
               <div className="mt-4 pt-4 border-t">
-                <Link
-                  to="/admissions"
-                  className="block w-full text-center bg-[#f9a825] text-[#1a237e] py-3 rounded-lg font-semibold"
-                >
+                <Link to="/admissions" className="block w-full text-center bg-[#f9a825] text-[#1a237e] py-3 rounded-lg font-semibold">
                   Apply Now
                 </Link>
               </div>
