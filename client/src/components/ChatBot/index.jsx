@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FiMessageCircle, FiX, FiSend } from 'react-icons/fi';
+import { FiMessageCircle, FiX, FiSend, FiLoader } from 'react-icons/fi';
 import {
   faqAPI, facilityAPI, busRouteAPI, downloadAPI,
   settingsAPI, newsAPI, achievementAPI, facultyAPI,
@@ -10,6 +10,7 @@ import answer, { SUGGESTIONS } from './botBrain';
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState([
     {
       from: 'bot',
@@ -22,7 +23,8 @@ const ChatBot = () => {
   const dataRef = useRef(null);
 
   useEffect(() => {
-    if (!isOpen || dataRef.current) return;
+    if (!isOpen || dataRef.current || loading) return;
+    setLoading(true);
     let alive = true;
     (async () => {
       const safe = (p, fb) => p.then((r) => r.data).catch(() => fb);
@@ -41,10 +43,11 @@ const ChatBot = () => {
         const d = { faqs, facilities, busRoutes, downloads, settings, news, achievements, faculty };
         setData(d);
         dataRef.current = d;
+        setLoading(false);
       }
     })();
     return () => { alive = false; };
-  }, [isOpen]);
+  }, [isOpen, loading]);
 
   useEffect(() => {
     const el = bodyRef.current;
@@ -53,7 +56,7 @@ const ChatBot = () => {
 
   const ask = (question) => {
     const q = question.trim();
-    if (!q) return;
+    if (!q || !dataRef.current) return;
 
     setMessages((prev) => [...prev, { from: 'user', text: q }]);
     setInput('');
@@ -137,13 +140,14 @@ const ChatBot = () => {
             )}
           </div>
 
-          {messages.length <= 2 && (
+          {messages.length <= 2 && !loading && (
             <div className="px-3 pt-2 pb-1 flex flex-wrap gap-1.5 border-t bg-white">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
                   onClick={() => ask(s)}
-                  className="text-[11px] px-2.5 py-1 rounded-full border border-[#1a237e]/20 text-[#1a237e] hover:bg-[#1a237e] hover:text-white transition-colors"
+                  disabled={!data}
+                  className="text-[11px] px-2.5 py-1 rounded-full border border-[#1a237e]/20 text-[#1a237e] hover:bg-[#1a237e] hover:text-white transition-colors disabled:opacity-40"
                 >
                   {s}
                 </button>
@@ -157,12 +161,13 @@ const ChatBot = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={onKeyDown}
-              placeholder="Ask a question…"
-              className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#1a237e]"
+              placeholder={data ? "Ask a question…" : "Loading school data…"}
+              disabled={!data}
+              className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-[#1a237e] disabled:bg-gray-100"
             />
             <button
               onClick={() => ask(input)}
-              disabled={!input.trim()}
+              disabled={!input.trim() || !data}
               aria-label="Send"
               className="px-3.5 py-2 bg-[#1a237e] text-white rounded-lg hover:bg-[#0d1452] disabled:opacity-40 transition-colors"
             >
