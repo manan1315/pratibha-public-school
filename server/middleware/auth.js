@@ -9,7 +9,7 @@ const auth = async (req, res, next) => {
       return res.status(401).json({ message: 'No token, authorization denied' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'ppsbasna_fallback_secret_2025_render_deploy');
     const user = await User.findById(decoded.id).select('-password');
 
     if (!user || !user.isActive) {

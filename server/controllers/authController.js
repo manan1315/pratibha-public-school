@@ -5,7 +5,9 @@ const { verifyCaptcha } = require('../middleware/captcha');
 const { recordFailedAttempt, recordSuccess } = require('../middleware/rateLimiter');
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE });
+  const secret = process.env.JWT_SECRET || 'ppsbasna_fallback_secret_2025_render_deploy';
+  const expire = process.env.JWT_EXPIRE || '24h';
+  return jwt.sign({ id }, secret, { expiresIn: expire });
 };
 
 exports.login = async (req, res) => {
