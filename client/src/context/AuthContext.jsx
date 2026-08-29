@@ -26,10 +26,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password, captchaToken, captchaAnswer) => {
-    const res = await authAPI.login({ email, password, captchaToken, captchaAnswer });
-    localStorage.setItem('adminToken', res.data.token);
-    setUser(res.data.user);
-    return res.data;
+    const { data } = await authAPI.login({ email, password, captchaToken, captchaAnswer });
+    localStorage.setItem('adminToken', data.token);
+    setUser(data.user);
+    return data;
   };
 
   const logout = () => { localStorage.removeItem('adminToken'); setUser(null); };

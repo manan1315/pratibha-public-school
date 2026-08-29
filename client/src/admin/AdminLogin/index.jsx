@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { FiLock, FiMail, FiArrowLeft } from 'react-icons/fi';
+import { FiLock, FiMail, FiArrowLeft, FiRefreshCw } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import Logo from '../../components/Logo';
 
@@ -9,61 +9,39 @@ const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState('');
-  const [captchaRendered, setCaptchaRendered] = useState(false);
-  const captchaRef = useRef(null);
+  const [captcha, setCaptcha] = useState(null);
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
   const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/admin';
 
   useEffect(() => { if (user) navigate(from, { replace: true }); }, [user, from, navigate]);
+  useEffect(() => { fetchCaptcha(); }, []);
 
-  // Explicitly render reCAPTCHA when script is ready
-  useEffect(() => {
-    const renderCaptcha = () => {
-      if (window.grecaptcha && captchaRef.current && !captchaRendered) {
-        try {
-          window.grecaptcha.render(captchaRef.current, {
-            sitekey: '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI',
-            callback: (token) => setRecaptchaToken(token),
-            'expired-callback': () => setRecaptchaToken(''),
-          });
-          setCaptchaRendered(true);
-        } catch (e) {
-          // already rendered
-        }
-      }
-    };
-
-    // Try immediately
-    renderCaptcha();
-
-    // If grecaptcha not loaded yet, wait for it
-    const interval = setInterval(() => {
-      if (window.grecaptcha) {
-        renderCaptcha();
-        clearInterval(interval);
-      }
-    }, 500);
-
-    // Cleanup
-    return () => clearInterval(interval);
-  }, [captchaRendered]);
+  const fetchCaptcha = async () => {
+    try {
+      const res = await fetch('/api/captcha');
+      const data = await res.json();
+      setCaptcha(data);
+      setCaptchaAnswer('');
+    } catch (err) { console.error('CAPTCHA fetch failed:', err); }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!recaptchaToken) { toast.error('Please complete the CAPTCHA.'); return; }
+    if (!captcha || !captchaAnswer) { toast.error('Please complete the CAPTCHA.'); return; }
     setLoading(true);
     try {
-      await login(email, password, recaptchaToken);
+      await login(email, password, captcha.token, captchaAnswer);
       toast.success('Login successful!');
       navigate(from, { replace: true });
     } catch (error) {
+      console.error('Login error:', error?.response?.data || error);
       const msg = error?.response?.data?.message || 'Login failed. Please try again.';
       toast.error(msg);
-      setRecaptchaToken('');
-      if (window.grecaptcha) window.grecaptcha.reset();
+      fetchCaptcha();
+      setCaptchaAnswer('');
     }
     setLoading(false);
   };
@@ -85,11 +63,19 @@ const AdminLogin = () => {
             <FiLock className="absolute left-3 top-3.5 text-gray-400" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1a237e]" required />
           </div>
-          {/* Google reCAPTCHA */}
-          <div className="flex justify-center">
-            <div ref={captchaRef} id="g-recaptcha" />
-          </div>
-          <button type="submit" disabled={loading || !recaptchaToken} className="w-full btn-primary py-3 disabled:opacity-50">
+          {captcha && (
+            <div className="bg-gray-50 rounded-lg p-3">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-gray-500 font-medium">Security Check</span>
+                <button type="button" onClick={fetchCaptcha} className="text-gray-400 hover:text-[#1a237e] transition-colors"><FiRefreshCw size={14} /></button>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="bg-[#1a237e] text-white px-4 py-2 rounded-lg font-mono text-lg tracking-wider select-none">{captcha.question}</div>
+                <input type="number" value={captchaAnswer} onChange={(e) => setCaptchaAnswer(e.target.value)} placeholder="Answer" className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#1a237e] text-center" required />
+              </div>
+            </div>
+          )}
+          <button type="submit" disabled={loading} className="w-full btn-primary py-3">
             {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>

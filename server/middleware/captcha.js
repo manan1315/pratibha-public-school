@@ -1,16 +1,34 @@
 const crypto = require('crypto');
 
 /**
- * Simple math CAPTCHA.
+ * Self-contained CAPTCHA — no in-memory store needed.
  *
- * The server generates a random arithmetic problem, stores the expected
- * answer server-side (in-memory), and sends the question to the client.
- * The client must submit the correct answer along with the login request.
- *
- * In production you'd store the answer in Redis or a signed cookie — this
- * keeps the dependency list small while still stopping scripted attacks.
+ * The question and answer are encoded into a signed token (HMAC).
+ * The client cannot forge the answer without the server secret.
+ * No database, no Redis, no in-memory store — works across instances.
  */
-const captchaStore = new Map(); // token -> { answer, expires }
+
+const CAPTCHA_SECRET = process.env.CAPTCHA_SECRET || 'ppsbasna_captcha_secret_2025_render';
+
+function signPayload(payload) {
+  const data = JSON.stringify(payload);
+  const hmac = crypto.createHmac('sha256', CAPTCHA_SECRET).update(data).digest('hex');
+  return Buffer.from(JSON.stringify({ data, hmac })).toString('base64url');
+}
+
+function verifySignedToken(token) {
+  try {
+    const decoded = JSON.parse(Buffer.from(token, 'base64url').toString('utf8'));
+    const { data, hmac } = decoded;
+    const expected = crypto.createHmac('sha256', CAPTCHA_SECRET).update(data).digest('hex');
+    if (hmac !== expected) return null; // tampered
+    const payload = JSON.parse(data);
+    if (payload.exp < Date.now()) return null; // expired
+    return payload;
+  } catch {
+    return null;
+  }
+}
 
 const generateCaptcha = () => {
   const a = Math.floor(Math.random() * 20) + 1;
@@ -24,33 +42,18 @@ const generateCaptcha = () => {
     case '×': answer = a * b; break;
   }
 
-  const token = crypto.randomBytes(24).toString('hex');
-  captchaStore.set(token, { answer, expires: Date.now() + 5 * 60 * 1000 });
-
+  const token = signPayload({ a, b, op, answer, exp: Date.now() + 5 * 60 * 1000 });
   return { token, question: `${a} ${op} ${b} = ?` };
 };
 
 const verifyCaptcha = (token, userAnswer) => {
-  const record = captchaStore.get(token);
-  if (!record) return { valid: false, message: 'CAPTCHA expired. Please refresh.' };
-  if (Date.now() > record.expires) {
-    captchaStore.delete(token);
-    return { valid: false, message: 'CAPTCHA expired. Please refresh.' };
-  }
+  const payload = verifySignedToken(token);
+  if (!payload) return { valid: false, message: 'CAPTCHA expired. Please refresh.' };
 
-  const correct = Number(userAnswer) === record.answer;
-  captchaStore.delete(token); // one-time use
-  return correct
-    ? { valid: true }
-    : { valid: false, message: 'Incorrect CAPTCHA answer. Please try again.' };
+  if (Number(userAnswer) !== payload.answer) {
+    return { valid: false, message: 'Incorrect CAPTCHA answer. Please try again.' };
+  }
+  return { valid: true };
 };
-
-// Clean up expired entries every 5 minutes
-setInterval(() => {
-  const now = Date.now();
-  for (const [token, record] of captchaStore) {
-    if (now > record.expires) captchaStore.delete(token);
-  }
-}, 5 * 60 * 1000);
 
 module.exports = { generateCaptcha, verifyCaptcha };

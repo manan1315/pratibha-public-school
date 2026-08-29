@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
-const { verifyRecaptcha } = require('../middleware/recaptcha');
+const { verifyCaptcha } = require('../middleware/captcha');
 const { recordFailedAttempt, recordSuccess } = require('../middleware/rateLimiter');
 
 const generateToken = (id) => {
@@ -12,17 +12,15 @@ const generateToken = (id) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, password, recaptchaToken } = req.body;
+    const { email, password, captchaToken, captchaAnswer } = req.body;
 
-    // reCAPTCHA verification
-    if (process.env.NODE_ENV === 'production') {
-      if (!recaptchaToken) {
-        return res.status(400).json({ message: 'Please complete the CAPTCHA.' });
-      }
-      const captchaResult = await verifyRecaptcha(recaptchaToken);
-      if (!captchaResult.valid) {
-        return res.status(400).json({ message: captchaResult.message || 'CAPTCHA verification failed.' });
-      }
+    // CAPTCHA verification
+    if (!captchaToken || !captchaAnswer) {
+      return res.status(400).json({ message: 'Please complete the CAPTCHA.' });
+    }
+    const captchaResult = verifyCaptcha(captchaToken, captchaAnswer);
+    if (!captchaResult.valid) {
+      return res.status(400).json({ message: captchaResult.message });
     }
 
     const user = await User.findOne({ email });
