@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   FiBookOpen, FiUsers, FiAward, FiMonitor, FiDroplet, FiHeart,
-  FiTruck, FiShield, FiCoffee, FiActivity, FiCpu, FiHome as FiHomeIcon,
+  FiTruck, FiShield, FiCoffee, FiActivity, FiCpu, FiX, FiHome as FiHomeIcon,
 } from 'react-icons/fi';
 import HeroSlider from '../../components/HeroSlider';
 import StatsCounter from '../../components/StatsCounter';
@@ -31,6 +31,7 @@ const Home = () => {
 
   const [email, setEmail] = React.useState('');
   const [subscribing, setSubscribing] = React.useState(false);
+  const [facilityGallery, setFacilityGallery] = React.useState(null);
 
   const principal = leadership.find((l) => l.type === 'principal') || leadership[0];
   const welcome = about.find((a) => a.section === 'welcome');
@@ -276,7 +277,11 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {facilities.slice(0, 8).map((f) => (
-                <div key={f._id} className="bg-white rounded-2xl p-4 text-center shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div
+                  key={f._id}
+                  onClick={() => f.images?.length > 0 && setFacilityGallery(f)}
+                  className={`bg-white rounded-2xl p-4 text-center shadow-lg transition-all duration-300 ${f.images?.length > 0 ? 'cursor-pointer hover:shadow-2xl hover:-translate-y-2 touch-manipulation' : ''}`}
+                >
                   <div className="w-16 h-16 mx-auto mb-2.5 rounded-full bg-[#1a237e]/10 flex items-center justify-center text-[#1a237e] text-xl sm:text-2xl">
                     {ICONS[f.icon] || <FiHomeIcon />}
                   </div>
@@ -289,6 +294,33 @@ const Home = () => {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Facility Image Gallery Lightbox */}
+      {facilityGallery && (
+        <div className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center" onClick={() => setFacilityGallery(null)}>
+          <button
+            onClick={(e) => { e.stopPropagation(); setFacilityGallery(null); }}
+            className="absolute top-4 right-4 text-white text-3xl z-50 p-2 hover:bg-white/10 rounded-full transition-colors"
+          >
+            <FiX />
+          </button>
+          <div className="w-full h-full flex items-center justify-center p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="max-w-4xl w-full">
+              <h3 className="text-white text-xl font-bold text-center mb-4">{facilityGallery.title}</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto">
+                {facilityGallery.images?.map((img, idx) => (
+                  <div key={idx} className="rounded-xl overflow-hidden">
+                    <img src={img} alt={`${facilityGallery.title} ${idx + 1}`} className="w-full h-48 object-cover" />
+                  </div>
+                ))}
+              </div>
+              {facilityGallery.description && (
+                <p className="text-gray-300 text-center mt-4 text-sm">{facilityGallery.description}</p>
+              )}
+            </div>
+          </div>
+        </div>
       )}
 
       <TestimonialSlider />
