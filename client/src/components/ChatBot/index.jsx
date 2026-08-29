@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMessageCircle, FiX, FiSend } from 'react-icons/fi';
 import {
@@ -13,16 +13,14 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       from: 'bot',
-      text:
-        'Namaste! 🙏 I\'m PPS Bot.\n\nAsk me about admissions, fees, timings, bus routes, ' +
-        'facilities or documents — I answer from the school\'s own information.',
+      text: 'Namaste! 🙏 I\'m PPS Bot.\n\nAsk me about admissions, fees, timings, bus routes, facilities or documents.',
     },
   ]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const bodyRef = useRef(null);
+  const dataRef = useRef(null);
 
-  /* Load the school's real content once the chat is first opened */
   useEffect(() => {
     if (!isOpen || data) return;
     let alive = true;
@@ -39,18 +37,21 @@ const ChatBot = () => {
           safe(achievementAPI.getAll(), []),
           safe(facultyAPI.getAll(), []),
         ]);
-      if (alive) setData({ faqs, facilities, busRoutes, downloads, settings, news, achievements, faculty });
+      if (alive) {
+        const d = { faqs, facilities, busRoutes, downloads, settings, news, achievements, faculty };
+        setData(d);
+        dataRef.current = d;
+      }
     })();
     return () => { alive = false; };
   }, [isOpen, data]);
 
-  /* Keep the newest message in view */
   useEffect(() => {
     const el = bodyRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, typing]);
 
-  const ask = useCallback((question) => {
+  const ask = (question) => {
     const q = question.trim();
     if (!q) return;
 
@@ -58,13 +59,13 @@ const ChatBot = () => {
     setInput('');
     setTyping(true);
 
-    // small delay so it reads as a reply, not an instant lookup
     setTimeout(() => {
-      const res = answer(q, data || {});
+      const d = dataRef.current || data || {};
+      const res = answer(q, d);
       setTyping(false);
       setMessages((prev) => [...prev, { from: 'bot', text: res.text, link: res.link }]);
     }, 420);
-  }, [data]);
+  };
 
   const onKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -75,7 +76,6 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Launcher */}
       <button
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? 'Close chat' : 'Chat with PPS Bot'}
@@ -84,10 +84,8 @@ const ChatBot = () => {
         {isOpen ? <FiX size={24} /> : <FiMessageCircle size={24} />}
       </button>
 
-      {/* Panel */}
       {isOpen && (
         <div className="fixed bottom-24 left-4 sm:left-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-          {/* Header */}
           <div className="bg-[#1a237e] text-white px-4 py-3 flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-[#f9a825] text-[#1a237e] flex items-center justify-center font-bold text-sm shrink-0">
               PPS
@@ -100,7 +98,6 @@ const ChatBot = () => {
             </div>
           </div>
 
-          {/* Messages */}
           <div ref={bodyRef} className="h-72 overflow-y-auto p-4 space-y-2.5 bg-gray-50">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
@@ -140,7 +137,6 @@ const ChatBot = () => {
             )}
           </div>
 
-          {/* Quick suggestions — only while the chat is still short */}
           {messages.length <= 2 && (
             <div className="px-3 pt-2 pb-1 flex flex-wrap gap-1.5 border-t bg-white">
               {SUGGESTIONS.map((s) => (
@@ -155,7 +151,6 @@ const ChatBot = () => {
             </div>
           )}
 
-          {/* Composer */}
           <div className="p-3 border-t bg-white flex gap-2">
             <input
               type="text"
