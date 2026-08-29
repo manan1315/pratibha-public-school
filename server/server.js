@@ -116,7 +116,15 @@ app.get('/api/health', (req, res) => {
 // ---------------------------------------------------------------
 const clientDist = path.join(__dirname, '..', 'client', 'dist');
 if (fs.existsSync(path.join(clientDist, 'index.html'))) {
-  app.use(express.static(clientDist, { maxAge: '7d', index: false }));
+  app.use(express.static(clientDist, { 
+    maxAge: '7d', 
+    index: false,
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.js') || filePath.endsWith('.css')) {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
+  }));
 
   // Any non-API route falls through to React Router
   app.get(/^\/(?!api|uploads).*/, (req, res) => {
