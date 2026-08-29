@@ -38,14 +38,20 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!captcha || !captchaAnswer) {
+      toast.error('Please complete the CAPTCHA.');
+      return;
+    }
     setLoading(true);
     try {
-      await login(email, password, captcha?.token, captchaAnswer);
+      await login(email, password, captcha.token, captchaAnswer);
       toast.success('Login successful!');
       navigate(from, { replace: true });
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Invalid credentials. Please try again.');
-      fetchCaptcha(); // refresh on failure
+      console.error('Login error:', error?.response?.data || error.message);
+      const msg = error?.response?.data?.message || 'Invalid credentials. Please try again.';
+      toast.error(msg);
+      fetchCaptcha();
       setCaptchaAnswer('');
     }
     setLoading(false);
