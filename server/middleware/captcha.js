@@ -38,7 +38,7 @@ const verifyCaptcha = (token, userAnswer) => {
     return { valid: false, message: 'CAPTCHA expired. Please refresh.' };
   }
 
-  const correct = parseInt(userAnswer, 10) === record.answer;
+  const correct = Number(userAnswer) === record.answer;
   captchaStore.delete(token); // one-time use
   return correct
     ? { valid: true }
