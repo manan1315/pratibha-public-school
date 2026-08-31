@@ -2,26 +2,26 @@
  * PPS Bot — simple, reliable, answers from school data.
  */
 
-const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+const norm = (s) => String(s || '').toLowerCase().replace(/[^\w\s\u0900-\u097F]/g, ' ').replace(/\s+/g, ' ').trim();
 const tokens = (s) => norm(s).split(' ').filter((w) => w.length > 2);
 
 const INTENTS = {
-  fees: ['fee', 'fees', 'cost', 'charge', 'tuition', 'payment', 'scholarship', 'concession'],
-  admission: ['admission', 'admit', 'enroll', 'apply', 'application', 'form'],
-  timings: ['timing', 'time', 'hours', 'open', 'close', 'schedule'],
-  transport: ['transport', 'bus', 'buses', 'route', 'stop', 'pickup', 'drop'],
-  contact: ['contact', 'phone', 'number', 'call', 'mobile', 'email', 'address', 'where'],
-  facilities: ['facility', 'lab', 'library', 'computer', 'sports', 'ground', 'canteen', 'medical', 'cctv', 'classroom', 'smart', 'hostel'],
-  documents: ['document', 'certificate', 'birth', 'aadhaar', 'tc', 'transfer', 'marksheet'],
-  board: ['board', 'cbse', 'affiliation', 'syllabus', 'stream', 'science', 'commerce', 'arts'],
-  classes: ['class', 'grade', 'nursery', 'lkg', 'ukg', 'age'],
-  results: ['result', 'marks', 'percentage', 'topper', 'exam'],
+  fees: ['fee', 'fees', 'fis', 'cost', 'charge', 'tuition', 'payment', 'scholarship', 'concession', 'shulk', 'fees'],
+  admission: ['admission', 'admit', 'enroll', 'apply', 'application', 'form', 'dakhila', 'pravesh'],
+  timings: ['timing', 'time', 'hours', 'open', 'close', 'schedule', 'samay', 'kb', 'kab'],
+  transport: ['transport', 'bus', 'buses', 'route', 'stop', 'pickup', 'drop', 'gaadi', 'bas'],
+  contact: ['contact', 'phone', 'number', 'call', 'mobile', 'email', 'address', 'where', 'pata', 'kahan'],
+  facilities: ['facility', 'lab', 'library', 'computer', 'sports', 'ground', 'canteen', 'medical', 'cctv', 'classroom', 'smart', 'hostel', 'khel'],
+  documents: ['document', 'certificate', 'birth', 'aadhaar', 'tc', 'transfer', 'marksheet', 'dastavez'],
+  board: ['board', 'cbse', 'affiliation', 'syllabus', 'stream', 'science', 'commerce', 'arts', 'board'],
+  classes: ['class', 'grade', 'nursery', 'lkg', 'ukg', 'age', 'kaksha', 'kaksha'],
+  results: ['result', 'marks', 'percentage', 'topper', 'exam', 'natija', 'pariksha'],
   downloads: ['download', 'pdf', 'brochure', 'prospectus', 'calendar', 'uniform'],
-  news: ['news', 'event', 'update', 'activity', 'function', 'programme'],
-  achievements: ['achievement', 'award', 'prize', 'winner', 'medal', 'trophy'],
-  faculty: ['teacher', 'faculty', 'staff', 'principal', 'director'],
-  greeting: ['hello', 'hi', 'hey', 'namaste', 'namaskar'],
-  thanks: ['thanks', 'thank', 'dhanyavad', 'shukriya', 'ok'],
+  news: ['news', 'event', 'update', 'activity', 'function', 'programme', 'khabar'],
+  achievements: ['achievement', 'award', 'prize', 'winner', 'medal', 'trophy', 'puraskar'],
+  faculty: ['teacher', 'faculty', 'staff', 'principal', 'director', 'adhyapak', 'shikshak'],
+  greeting: ['hello', 'hi', 'hey', 'namaste', 'namaskar', 'pranam'],
+  thanks: ['thanks', 'thank', 'dhanyavad', 'shukriya', 'ok', 'theek'],
 };
 
 function detectIntent(q) {
