@@ -27,7 +27,7 @@ export const aboutAPI = { getAll: () => api.get('/about'), get: (s) => api.get(`
 export const newsAPI = { getAll: () => api.get('/news'), getFeatured: () => api.get('/news/featured'), getAllAdmin: () => api.get('/news/all'), create: (d) => api.post('/news', d), update: (id, d) => api.put(`/news/${id}`, d), delete: (id) => api.delete(`/news/${id}`) };
 export const galleryAPI = { getAlbums: () => api.get('/albums'), getAllAlbums: () => api.get('/albums/all'), getImages: (a) => api.get(`/gallery${a ? `?albumId=${a}` : ''}`), uploadImage: (d) => api.post('/gallery', d) };
 export const enquiryAPI = { submit: (d) => api.post('/enquiries', d), getAll: () => api.get('/enquiries') };
-export const contactAPI = { submit: (d) => api.post('/contacts', d), getAll: () => api.get('/contacts') };
+export const contactAPI = { submit: (d) => api.post('/contact', d), getAll: () => api.get('/contact') };
 export const subscriberAPI = { subscribe: (d) => api.post('/subscribers', d), getAll: () => api.get('/subscribers'), delete: (id) => api.delete(`/subscribers/${id}`) };
 export const uploadAPI = { upload: (file) => { const fd = new FormData(); fd.append('file', file); return api.post('/upload', fd, { headers: { 'Content-Type': 'multipart/form-data' } }); } };
 
