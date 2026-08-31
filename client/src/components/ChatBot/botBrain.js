@@ -2,24 +2,24 @@
  * PPS Bot — simple, reliable, answers from school data.
  */
 
-const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9\s\u0900-\u097F]/g, ' ').replace(/\s+/g, ' ').trim();
+const norm = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
 const tokens = (s) => norm(s).split(' ').filter((w) => w.length > 2);
 
 const INTENTS = {
-  fees: ['fee', 'fees', 'fis', 'cost', 'charge', 'tuition', 'payment', 'scholarship', 'concession', 'shulk'],
-  admission: ['admission', 'admit', 'enroll', 'apply', 'application', 'form', 'dakhila'],
-  timings: ['timing', 'time', 'hours', 'open', 'close', 'schedule', 'samay', 'kb'],
-  transport: ['transport', 'bus', 'buses', 'route', 'stop', 'pickup', 'drop', 'gaadi'],
-  contact: ['contact', 'phone', 'number', 'call', 'mobile', 'email', 'address', 'where', 'pata'],
+  fees: ['fee', 'fees', 'cost', 'charge', 'tuition', 'payment', 'scholarship', 'concession'],
+  admission: ['admission', 'admit', 'enroll', 'apply', 'application', 'form'],
+  timings: ['timing', 'time', 'hours', 'open', 'close', 'schedule'],
+  transport: ['transport', 'bus', 'buses', 'route', 'stop', 'pickup', 'drop'],
+  contact: ['contact', 'phone', 'number', 'call', 'mobile', 'email', 'address', 'where'],
   facilities: ['facility', 'lab', 'library', 'computer', 'sports', 'ground', 'canteen', 'medical', 'cctv', 'classroom', 'smart', 'hostel'],
   documents: ['document', 'certificate', 'birth', 'aadhaar', 'tc', 'transfer', 'marksheet'],
   board: ['board', 'cbse', 'affiliation', 'syllabus', 'stream', 'science', 'commerce', 'arts'],
-  classes: ['class', 'grade', 'nursery', 'lkg', 'ukg', 'age', 'kaksha'],
-  results: ['result', 'marks', 'percentage', 'topper', 'exam', 'natija'],
+  classes: ['class', 'grade', 'nursery', 'lkg', 'ukg', 'age'],
+  results: ['result', 'marks', 'percentage', 'topper', 'exam'],
   downloads: ['download', 'pdf', 'brochure', 'prospectus', 'calendar', 'uniform'],
   news: ['news', 'event', 'update', 'activity', 'function', 'programme'],
   achievements: ['achievement', 'award', 'prize', 'winner', 'medal', 'trophy'],
-  faculty: ['teacher', 'faculty', 'staff', 'principal', 'director', 'adhyapak'],
+  faculty: ['teacher', 'faculty', 'staff', 'principal', 'director'],
   greeting: ['hello', 'hi', 'hey', 'namaste', 'namaskar'],
   thanks: ['thanks', 'thank', 'dhanyavad', 'shukriya', 'ok'],
 };
